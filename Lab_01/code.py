@@ -13,4 +13,4 @@ def are_valid_groups(studentNum, groups):
       return False
 
   return True
->>>>>>> 9f52672de22a7d1f1d4b99e8b1862124762affea
+
