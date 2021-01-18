@@ -1,15 +1,26 @@
 
-def are_valid_groups(studentNum: String, groups):
-  flag = True
+def are_valid_groups(studentNum, groups):
+  
+  if not type(studentNum[0]) == str:
+    print("invalid student number type")
+    return False
+
+  for g in groups:
+    if not 2 <= len(g) <= 3:
+      return False
+
+
 
   for num in studentNum:
-    flag = False
+    seen = False
     
     for group in groups:
-      if num in group:
-        flag = True
+      if num in group and seen:
+        return False
+      elif num in group:
+        seen = True
       
-    if not flag:
+    if not seen:
       return False
 
   return True
