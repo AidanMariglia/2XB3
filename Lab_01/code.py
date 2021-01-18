@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-def are_valid_groups(studentNum, groups):
+
+def are_valid_groups(studentNum: String, groups):
   flag = True
 
   for num in studentNum:
