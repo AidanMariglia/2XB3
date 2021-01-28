@@ -52,13 +52,10 @@ def excel():
     workbook = Workbook()
     sheet = workbook.active
 
-    for i in range(10):
-        sheet["A" + str(i + 1)] = i
-
     for i in range(1000, 100000, 1000):
         total = 0
-        #sheet["A"+str(int(i/1000))] = i
-        #sheet["B"+str(int(i/1000))] = timetest(10, i)
+        sheet["A"+str(int(i/1000))] = i
+        sheet["B"+str(int(i/1000))] = timetest(10, i)
 
     workbook.save(filename = Copyfile)
 
