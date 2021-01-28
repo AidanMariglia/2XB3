@@ -1,21 +1,19 @@
 import timeit
 import random
+from openpyxl import Workbook
 
-<<<<<<< HEAD
-
-def copy():
-    list1 = [1, 2, 3, 4, 5]
-    list2 = list1.copy()
-=======
 def copy(Length):
     list1 = []
     for i in range(Length):
         list1.append(i)
     
->>>>>>> d1a1ac514fc1807a4df21bf4752e7dab7a30167d
 
 def lookups():
     L = []
+    filename = "lookups.csv"
+    workbook = Workbook()
+    sheet = workbook.active
+
 
     for i in range(1000000):
         L.append(random.randrange(500))
@@ -25,10 +23,16 @@ def lookups():
     for i in range(1000000):
         start = timeit.default_timer()
         x = L[i]
-        print(timeit.default_timer() - start)
+        end = timeit.default_timer() - start
+        sheet["A"+str(i)] = i
+        sheet["B"+str(i)] = end
+
+        #print(timeit.default_timer() - start)
+
+    workbook.save(filename=filename)
 
 
-lookups()
+
 
 def timetest(runs, Length):
     total = 0
@@ -41,4 +45,7 @@ def timetest(runs, Length):
 
 for i in range(100, 10000, 100):
     print(i, timetest(10, i))
+
+
+lookups()
 
