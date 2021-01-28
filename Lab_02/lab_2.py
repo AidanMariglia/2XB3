@@ -55,7 +55,7 @@ def excel():
     for i in range(1000, 100000, 1000):
         total = 0
         sheet["A"+str(int(i/1000))] = i
-        sheet["B"+str(int(i/1000))] = timetest(10, i)
+        sheet["B"+str(int(i/1000))] = timetest(50, i)
 
     workbook.save(filename = Copyfile)
 
