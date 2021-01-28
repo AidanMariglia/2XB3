@@ -10,7 +10,7 @@ def copy(Length):
 
 def lookups():
     L = []
-    filename = "lookups.csv"
+    filename = "lookups.xlsx"
     workbook = Workbook()
     sheet = workbook.active
 
@@ -24,10 +24,14 @@ def lookups():
         start = timeit.default_timer()
         x = L[i]
         end = timeit.default_timer() - start
-        sheet["A"+str(i)] = i
-        sheet["B"+str(i)] = end
+        #sheet["A"+str(i)] = i
+        #sheet["B"+str(i)] = end
 
         #print(timeit.default_timer() - start)
+
+    for i in range(100):
+        sheet["A"+str(i+1)] = str(i)
+        sheet["B"+str(i+1)] = str(i+1)
 
     workbook.save(filename=filename)
 
