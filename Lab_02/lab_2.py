@@ -8,14 +8,20 @@ def copy(Length):
     
 
 def lookups():
-    
+    L = []
+
     for i in range(1000000):
-        L[i] = random.randrange(500)
+        L.append(random.randrange(500))
 
     x = 0
 
     for i in range(1000000):
+        start = timeit.default_timer()
         x = L[i]
+        print(timeit.default_timer() - start)
+
+
+lookups()
 
 def timetest(runs, Length):
     total = 0
