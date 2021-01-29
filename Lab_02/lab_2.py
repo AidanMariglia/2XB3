@@ -13,7 +13,7 @@ def copy(List):
 
 def lookups():
     L = []
-    filename = "lookups.xlsx"
+    filename = "lookups_rev_2.xlsx"
     workbook = Workbook()
     sheet = workbook.active
 
@@ -25,7 +25,7 @@ def lookups():
 
     for i in range(1000000):
         start = timeit.default_timer()
-        x = L[i]
+        L[i]
         end = timeit.default_timer() - start
         sheet["A"+str(i+1)] = i
         sheet["B"+str(i+1)] = end
@@ -59,4 +59,6 @@ def excel():
 
     workbook.save(filename = Copyfile)
 
-excel()
+#excel()
+
+lookups()
