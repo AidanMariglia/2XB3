@@ -59,6 +59,24 @@ def excel():
 
     workbook.save(filename = Copyfile)
 
-#excel()
+def append():
+    filename = "append.xlsx"
+    workbook = Workbook()
+    sheet = workbook.active
 
-lookups()
+    L = []
+
+    for i in range(1000000):
+        start = timeit.default_timer()
+        L.append(1)
+        end = timeit.default_timer() - start
+        sheet["A" + str(i+1)] = i
+        sheet["B" + str(i+1)] = end
+
+    workbook.save(filename=filename)
+
+append()
+    
+
+#excel()
+#lookups()
