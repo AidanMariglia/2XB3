@@ -39,6 +39,7 @@ def lookups():
 
 def timetest(runs, Length):
     total = 0
+    list1 = []
     for _ in range(runs):
         list1 = makelist(Length)
         start = timeit.default_timer()
@@ -48,7 +49,7 @@ def timetest(runs, Length):
     return total/runs
 
 def excel():
-    Copyfile = "Copy.xlsx"
+    filename = "Copy.xlsx"
     workbook = Workbook()
     sheet = workbook.active
 
@@ -56,7 +57,7 @@ def excel():
         total = 0
         sheet["A"+str(int(i/1000))] = i
         sheet["B"+str(int(i/1000))] = timetest(50, i)
-
-    workbook.save(filename = Copyfile)
+        
+    workbook.save("Copy.xlsx")
 
 excel()
