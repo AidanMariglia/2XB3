@@ -76,7 +76,35 @@ def append():
     workbook.save(filename=filename)
 
 append()
+
+def multiAppend(n):
+    L = []
+
+    for i in range(n):
+        L.append(i)
+
+
+def multiAppendTime():
+    filename = "experiments.xlsx"
+    workbook = Workbook()
+    sheet = workbook.active
+
+    cell = 1
+
+    for i in range(100000, 1000, 1000):
+        start = timeit.default_timer()
+        multiAppend(i)
+        end = timeit.default_timer() - start
+
+        sheet["A" + str(cell)] = i
+        sheet["B" + str(cell)] = end
+
+        cell += 1
+        print(cell)
+
+    workbook.save(filename=filename)
     
 
 #excel()
 #lookups()
+multiAppendTime()
