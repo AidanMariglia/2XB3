@@ -92,21 +92,25 @@ def multiAppendTime():
     cell = 1
 
     for i in range(1000, 100000, 1000):
-        start = timeit.default_timer()
-        multiAppend(i)
-        end = timeit.default_timer() - start
-        print(end)
+        accum = 0
+        for j in range(10):
+            start = timeit.default_timer()
+            multiAppend(i)
+            end = timeit.default_timer() - start
+            accum += end
+        
+        accum /= 10
 
         sheet["A" + str(cell)] = i
-        sheet["B" + str(cell)] = end
+        sheet["B" + str(cell)] = accum
 
         cell += 1
-        print("test")
+        
 
     workbook.save(filename = filename)
     
 
-    print("test")
+    
 
 #excel()
 #lookups()
