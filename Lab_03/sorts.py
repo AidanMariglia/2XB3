@@ -48,7 +48,7 @@ def dual_pivot_quicksort(L):
 def dual_pivot_quicksort_copy(L):
     if len(L) < 2:
         return L
-    pivot_left = min(L[0], L[0])
+    pivot_left = min(L[0], L[1])
     pivot_right = max(L[0], L[1])
     left, right, mid = [], [], []
 
@@ -63,6 +63,40 @@ def dual_pivot_quicksort_copy(L):
          + dual_pivot_quicksort_copy(mid) + [pivot_right] \
          + dual_pivot_quicksort_copy(right)
 
+
+def tri_pivot_quicksort(L):
+    copy = tri_pivot_quicksort_copy(L)
+    for i in range(len(L)):
+        L[i] = copy[i]
+
+def tri_pivot_quicksort_copy(L):
+    if len(L) < 2:
+        return L
+
+    if len(L) < 3:
+        return [min(L[0], L[1]), max(L[0], L[1])]
+
+    pivots = sorted([L[0], L[1], L[2]])
+    pivot_left = pivots[0]
+    pivot_mid = pivots[1]
+    pivot_right = pivots[2]
+    left, midleft, midright, right = [], [], [], []
+
+    for num in L[3:]:
+        if (num < pivot_left):
+            left.append(num)
+        elif (num < pivot_mid):
+            midleft.append(num)
+        elif (num < pivot_right):
+            midright.append(num)
+        else:
+            right.append(num)
+
+    return tri_pivot_quicksort_copy(left) + [pivot_left] \
+        + tri_pivot_quicksort_copy(midleft) + [pivot_mid] \
+        + tri_pivot_quicksort_copy(midright) + [pivot_right] \
+        + tri_pivot_quicksort_copy(right)
+        
 
 def timetest(f, runs, Length):
     total = 0
@@ -90,4 +124,9 @@ def main():
     plt.legend()
     plt.show()
 
-main()
+#main()
+
+L = tri_pivot_quicksort_copy(create_random_list(1000))
+
+for i in L:
+    print(i)
