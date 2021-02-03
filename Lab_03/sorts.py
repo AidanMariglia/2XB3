@@ -3,10 +3,13 @@ import math
 import timeit
 
 def quicksort_inplace(a):
-    pass
+    sort_rec(a, 0, len(a) - 1)
 
 def sort_rec(a, lo, hi):
-    pass
+    if (hi <= lo): return
+    j = partition(a, lo, hi)
+    sort_rec(a, lo, j-1)
+    sort_rec(a, j+1, hi)
 
 def partition(a, lo, hi):
     i = lo
@@ -23,6 +26,11 @@ def partition(a, lo, hi):
             if (j == lo): break
         
         if (i >= j): break
+        exchange(a, i, j)
+        
+    exchange(a, lo, j)
+    return j
+
 def exchange(a, i, j):
     temp = a[i]
     a[i] = a[j]
