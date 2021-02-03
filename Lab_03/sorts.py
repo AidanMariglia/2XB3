@@ -46,11 +46,12 @@ def main():
     bad = []
     runs = []
 
-    for i in range(1000, 100000, 1000):
+    for i in range(1000, 10000, 1000):
         runs.append(i)
         good.append(timetest(quicksort_inplace, 20, i))
-        bad.append(timetest(my_quicksort, 20, i)
-    
+        bad.append(timetest(my_quicksort, 20, i))
+
+    plt.plot(runs, good)
 
 
 def timetest(f, runs, Length):
@@ -65,6 +66,6 @@ def timetest(f, runs, Length):
     return total/runs
 
 
-for i in range(1000, 100000, 1000):
-    print(i)
-    print(timetest(quicksort_inplace, 50, i))
+
+
+main()
