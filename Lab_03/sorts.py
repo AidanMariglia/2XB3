@@ -1,7 +1,8 @@
 import random
 import math
 import timeit
-from lab3 import create_random_list
+import matplotlib
+from lab3 import *
 
 def quicksort_inplace(a):
     sort_rec(a, 0, len(a) - 1)
