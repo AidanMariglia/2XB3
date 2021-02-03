@@ -40,6 +40,16 @@ def exchange(a, i, j):
     a[i] = a[j]
     a[j] = temp
 
+def timetest(f, runs, Length):
+    total = 0
+    list1 = []
+    for _ in range(runs):
+        list1 = create_random_list(Length)
+        start = timeit.default_timer()
+        f(list1)
+        end = timeit.default_timer()
+        total += end - start
+    return total/runs
 
 def main():
     good = []
@@ -51,20 +61,9 @@ def main():
         good.append(timetest(quicksort_inplace, 20, i))
         bad.append(timetest(my_quicksort, 20, i))
 
-    plt.plot(runs, good, label = "good")
-    plt.plot(runs, bad, label = "bad")
+    plt.plot(runs, good, label = "quicksort_inplace")
+    plt.plot(runs, bad, label = "my_quicksort")
     plt.legend()
     plt.show()
-
-def timetest(f, runs, Length):
-    total = 0
-    list1 = []
-    for _ in range(runs):
-        list1 = create_random_list(Length)
-        start = timeit.default_timer()
-        f(list1)
-        end = timeit.default_timer()
-        total += end - start
-    return total/runs
 
 main()
