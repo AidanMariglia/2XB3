@@ -1,6 +1,7 @@
 import random
 import math
 import timeit
+from lab3 import create_random_list
 
 def quicksort_inplace(a):
     sort_rec(a, 0, len(a) - 1)
@@ -35,3 +36,15 @@ def exchange(a, i, j):
     temp = a[i]
     a[i] = a[j]
     a[j] = temp
+
+
+def main():
+
+    a = create_random_list(100)
+    quicksort_inplace(a)
+
+    for i in a:
+        print(i)
+
+
+main()
