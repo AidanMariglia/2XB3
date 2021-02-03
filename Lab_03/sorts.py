@@ -40,6 +40,19 @@ def exchange(a, i, j):
     a[i] = a[j]
     a[j] = temp
 
+def dual_pivot_quicksort(L):
+    if len(L) < 2:
+        return L
+    pivOne = min(L[0], L[0])
+    pivTwo = max(L[0], L[1])
+    left, right, mid = [], [], []
+
+    for num in L[2:]:
+        pass
+
+
+
+
 def timetest(f, runs, Length):
     total = 0
     list1 = []
