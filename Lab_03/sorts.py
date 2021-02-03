@@ -41,16 +41,27 @@ def exchange(a, i, j):
     a[j] = temp
 
 def dual_pivot_quicksort(L):
+    copy = dual_pivot_quicksort_copy(L)
+    for i in range(len(L)):
+        L[i] = copy[i]
+
+def dual_pivot_quicksort_copy(L):
     if len(L) < 2:
         return L
-    pivOne = min(L[0], L[0])
-    pivTwo = max(L[0], L[1])
+    pivot_left = min(L[0], L[0])
+    pivot_right = max(L[0], L[1])
     left, right, mid = [], [], []
 
     for num in L[2:]:
-        pass
-
-
+        if (num < pivot_left):
+            left.append(num)
+        elif (num < pivot_right):
+            mid.append(num)
+        else :
+            right.append(num)
+    return dual_pivot_quicksort_copy(left) + [pivot_left] \
+         + dual_pivot_quicksort_copy(mid) + [pivot_right] \
+         + dual_pivot_quicksort_copy(right)
 
 
 def timetest(f, runs, Length):
