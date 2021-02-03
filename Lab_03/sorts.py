@@ -5,9 +5,7 @@ import matplotlib
 from lab3 import *
 
 def quicksort_inplace(a):
-    start = timeit.default_timer()
     sort_rec(a, 0, len(a) - 1)
-    end = timeit.default_timer() - start
 
 def sort_rec(a, lo, hi):
     if (hi <= lo): return
