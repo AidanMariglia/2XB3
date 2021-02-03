@@ -48,7 +48,7 @@ def dual_pivot_quicksort(L):
 def dual_pivot_quicksort_copy(L):
     if len(L) < 2:
         return L
-    pivot_left = min(L[0], L[0])
+    pivot_left = min(L[0], L[1])
     pivot_right = max(L[0], L[1])
     left, right, mid = [], [], []
 
@@ -57,7 +57,7 @@ def dual_pivot_quicksort_copy(L):
             left.append(num)
         elif (num < pivot_right):
             mid.append(num)
-        else :
+        else:
             right.append(num)
     return dual_pivot_quicksort_copy(left) + [pivot_left] \
          + dual_pivot_quicksort_copy(mid) + [pivot_right] \
@@ -80,12 +80,12 @@ def main():
     bad = []
     runs = []
 
-    for i in range(1000, 100000, 1000):
+    for i in range(1000, 10000, 1000):
         runs.append(i)
-        good.append(timetest(quicksort_inplace, 20, i))
+        good.append(timetest(dual_pivot_quicksort, 20, i))
         bad.append(timetest(my_quicksort, 20, i))
 
-    plt.plot(runs, good, label = "quicksort_inplace")
+    plt.plot(runs, good, label = "dual_quicksort")
     plt.plot(runs, bad, label = "my_quicksort")
     plt.legend()
     plt.show()
