@@ -4,6 +4,20 @@ import timeit
 import matplotlib.pyplot as plt
 from lab3 import *
 
+
+def insertion_sort(L):
+    j = 0
+    for i in range(len(L)):
+        j = i
+        
+        while(j > 0 and L[j] < L[j - 1]):
+            exchange(L, j, j - 1)
+            j -= 1
+
+    return L
+
+
+
 def quicksort_inplace(a):
     sort_rec(a, 0, len(a) - 1)
 
@@ -98,6 +112,7 @@ def tri_pivot_quicksort_copy(L):
         + tri_pivot_quicksort_copy(right)
         
 
+
 def timetest(f, runs, Length):
     total = 0
     list1 = []
@@ -126,7 +141,8 @@ def main():
 
 #main()
 
-L = tri_pivot_quicksort_copy(create_random_list(1000))
+L = insertion_sort(create_random_list(1000))
+
 
 for i in L:
     print(i)
