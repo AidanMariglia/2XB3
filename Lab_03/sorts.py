@@ -1,7 +1,7 @@
 import random
 import math
 import timeit
-import matplotlib
+import matplotlib.pyplot as plt
 from lab3 import *
 
 def quicksort_inplace(a):
@@ -42,20 +42,24 @@ def exchange(a, i, j):
 
 
 def main():
+    good = []
+    bad = []
+    runs = []
 
-    a = create_random_list(100)
-    quicksort_inplace(a)
+    for i in range(1000, 100000, 1000):
+        runs.append(i)
+        good.append(timetest(quicksort_inplace, 20, i))
+        bad.append(timetest(my_quicksort, 20, i)
+    
 
-    for i in a:
-        print(i)
 
-def timetest(runs, Length):
+def timetest(f, runs, Length):
     total = 0
     list1 = []
     for _ in range(runs):
         list1 = create_random_list(Length)
         start = timeit.default_timer()
-        quicksort_inplace(list1)
+        f(list1)
         end = timeit.default_timer()
         total += end - start
     return total/runs
@@ -63,4 +67,4 @@ def timetest(runs, Length):
 
 for i in range(1000, 100000, 1000):
     print(i)
-    print(timetest(50, i))
+    print(timetest(quicksort_inplace, 50, i))
