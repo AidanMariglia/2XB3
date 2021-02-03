@@ -88,9 +88,9 @@ def tri_pivot_quicksort_copy(L):
         return L
 
     if len(L) < 3:
-        return [min(L[0], L[1]), max(L[0], L[1])]
+        return insertion_sort(L)
 
-    pivots = sorted([L[0], L[1], L[2]])
+    pivots = insertion_sort([L[0], L[1], L[2]])
     pivot_left = pivots[0]
     pivot_mid = pivots[1]
     pivot_right = pivots[2]
@@ -110,7 +110,41 @@ def tri_pivot_quicksort_copy(L):
         + tri_pivot_quicksort_copy(midleft) + [pivot_mid] \
         + tri_pivot_quicksort_copy(midright) + [pivot_right] \
         + tri_pivot_quicksort_copy(right)
-        
+
+
+def quad_pivot_quicksort(L):
+    copy = quad_pivot_quicksort_copy(L)
+
+    for i in range(len(L)):
+        L[i] = copy[i]
+
+def quad_pivot_quicksort_copy(L):
+    if len(L) < 2:
+        return L
+    if len(L) < 3:
+        return insertion_sort(L)
+    if len(L) < 4:
+        return insertion_sort(L)
+
+    pivots = insertion_sort(L[0:5])
+    temps = [[],[],[],[],[]]
+    for num in L[4:]:
+        if (num < pivots[0]):
+            temps[0].append(num)
+        elif (num < pivots[1]):
+            temps[1].append(num)
+        elif (num < pivots[2]):
+            temps[2].append(num)
+        elif (num < pivots[3]):
+            temps[3].append(num)
+        else:
+            temps[4].append(num)
+
+    return quad_pivot_quicksort_copy(temps[0]) + [pivots[0]] \
+        + quad_pivot_quicksort_copy(temps[1]) + [pivots[1]] \
+        + quad_pivot_quicksort_copy(temps[2]) + [pivots[2]] \
+        + quad_pivot_quicksort_copy(temps[3]) + [pivots[3]] \
+        + quad_pivot_quicksort_copy(temps[4])
 
 
 def timetest(f, runs, Length):
@@ -141,7 +175,7 @@ def main():
 
 #main()
 
-L = insertion_sort(create_random_list(1000))
+L = quad_pivot_quicksort_copy(create_random_list(1000))
 
 
 for i in L:
