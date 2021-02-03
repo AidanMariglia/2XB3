@@ -50,7 +50,11 @@ def main():
         runs.append(i)
         good.append(timetest(quicksort_inplace, 20, i))
         bad.append(timetest(my_quicksort, 20, i))
-    
+
+    plt.plot(runs, good, label = "good")
+    plt.plot(runs, bad, label = "bad")
+    plt.legend()
+    plt.show()
 
 def timetest(f, runs, Length):
     total = 0
