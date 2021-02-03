@@ -109,24 +109,44 @@ def timetest(f, runs, Length):
         total += end - start
     return total/runs
 
+def worst_case_timetest(f, runs, Length):
+    total = 0
+    list1 = []
+    for _ in range(runs):
+        list1 = random_reverse_list(Length)
+        start = timeit.default_timer()
+        f(list1)
+        end = timeit.default_timer()
+        total += end - start
+    return total/runs
+
 def main():
-    good = []
-    bad = []
+    one = []
+    two = []
     runs = []
+    three = []
 
-    for i in range(1000, 10000, 1000):
+    for i in range(10, 1000, 10):
         runs.append(i)
-        good.append(timetest(dual_pivot_quicksort, 20, i))
-        bad.append(timetest(my_quicksort, 20, i))
+        one.append(timetest(tri_pivot_quicksort, 20, i))
+        two.append(worst_case_timetest(tri_pivot_quicksort, 20, i))
 
-    plt.plot(runs, good, label = "dual_quicksort")
-    plt.plot(runs, bad, label = "my_quicksort")
+    plt.plot(runs, one, label = "average")
+    plt.plot(runs, two, label = "worst case")
+    plt.xlabel('Length')
+    plt.ylabel('Runtime') 
+    plt.title("Worst Case vs Average Peformance")
     plt.legend()
     plt.show()
 
-#main()
+def random_reverse_list(n):
+    L = create_random_list(n)
+    L.sort()
+    i = 0
+    for i in range(int(n/2)):
+        L[i], L[n - 1 - i] = L[n - 1 - i], L[i]
+    return L
 
-L = tri_pivot_quicksort_copy(create_random_list(1000))
-
-for i in L:
-    print(i)
+list1 = random_reverse_list(3250)
+tri_pivot_quicksort(list1)
+print(list1)
