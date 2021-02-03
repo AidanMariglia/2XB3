@@ -159,17 +159,23 @@ def timetest(f, runs, Length):
     return total/runs
 
 def main():
-    good = []
-    bad = []
+    single = []
+    double = []
+    triple = []
+    quad = []
     runs = []
 
     for i in range(1000, 100000, 1000):
         runs.append(i)
-        good.append(timetest(quicksort_inplace, 20, i))
-        bad.append(timetest(my_quicksort, 20, i))
+        single.append(timetest(my_quicksort, 20, i))
+        double.append(timetest(dual_pivot_quicksort, 20, i))
+        triple.append(timetest(tri_pivot_quicksort, 20, i))
+        quad.append(timetest(tri_pivot_quicksort, 20, i))
 
-    plt.plot(runs, good, label = "quicksort_inplace")
-    plt.plot(runs, bad, label = "my_quicksort")
+    plt.plot(runs, single, label = "single pivot")
+    plt.plot(runs, double, label = "double pivot")
+    plt.plot(runs, triple, label = "triple pivot")
+    plt.plot(runs, quad, label = "quad pivot")
     plt.legend()
     plt.show()
 
