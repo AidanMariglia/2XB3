@@ -16,6 +16,18 @@ def insertion_sort(L):
 
     return L
 
+def selection_sort(L):
+    j = 0
+    for i in range(len(L)):
+        min = i
+        j = i
+        while(j < len(L)):
+            if (L[j] < L[min]):
+                min = j
+            j += 1
+        exchange(L, i, min)
+    return L
+
 
 
 def quicksort_inplace(a):
@@ -170,26 +182,10 @@ def worst_case_timetest(f, runs, Length):
     return total/runs
 
 def main():
-    single = []
-    double = []
-    triple = []
-    quad = []
-    runs = []
-    three = []
+    L = selection_sort(create_random_list(100))
 
-    for i in range(10, 1000, 10):
-        runs.append(i)
-        single.append(timetest(my_quicksort, 20, i))
-        double.append(timetest(dual_pivot_quicksort, 20, i))
-        triple.append(timetest(tri_pivot_quicksort, 20, i))
-        quad.append(timetest(tri_pivot_quicksort, 20, i))
-
-    plt.plot(runs, single, label = "single pivot")
-    plt.plot(runs, double, label = "double pivot")
-    plt.plot(runs, triple, label = "triple pivot")
-    plt.plot(runs, quad, label = "quad pivot")
-    plt.legend()
-    plt.show()
+    for i in L:
+        print(i)
 
 main()
 
