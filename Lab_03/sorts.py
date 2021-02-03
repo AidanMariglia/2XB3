@@ -4,9 +4,7 @@ import timeit
 from lab3 import create_random_list
 
 def quicksort_inplace(a):
-    start = timeit.default_timer()
     sort_rec(a, 0, len(a) - 1)
-    end = timeit.default_timer() - start
 
 def sort_rec(a, lo, hi):
     if (hi <= lo): return
@@ -63,5 +61,4 @@ def timetest(runs, Length):
 
 
 for i in range(1000, 100000, 1000):
-    print(i)
-    print(timetest(50, i))
+    print(i, timetest(50, i))
