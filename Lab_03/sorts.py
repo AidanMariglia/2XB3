@@ -4,6 +4,14 @@ import timeit
 import matplotlib.pyplot as plt
 from lab3 import *
 
+def bubble_sort(L):
+    j = 0
+    for i in range(0, len(L)):
+        for j in range(0, len(L) - i - 1):
+            if(L[j] > L[j + 1]):
+                exchange(L, j, j + 1)
+
+    return L
 
 def insertion_sort(L):
     j = 0
@@ -195,6 +203,8 @@ def main():
     for i in L:
         print(i)
 
-main()
+list1 = create_random_list(25)
+list2 = bubble_sort(list1)
+print(list2)
 
 
