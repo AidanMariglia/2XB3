@@ -21,11 +21,13 @@ def partition(a, lo, hi):
         while (a[i + 1] < pivot):
             i += 1
             if (i == hi): break
-        
+        i += 1
+
         while (a[j - 1] > pivot):
             j -= 1
             if (j == lo): break
-        
+        j -= 1
+
         if (i >= j): break
         exchange(a, i, j)
         
