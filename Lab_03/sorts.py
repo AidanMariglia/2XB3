@@ -181,6 +181,14 @@ def worst_case_timetest(f, runs, Length):
         total += end - start
     return total/runs
 
+def random_reverse_list(n):
+    L = create_random_list(n)
+    L.sort()
+    i = 0
+    for i in range(int(n/2)):
+        L[i], L[n - 1 - i] = L[n - 1 - i], L[i]
+    return L
+
 def main():
     L = selection_sort(create_random_list(100))
 
