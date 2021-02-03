@@ -179,10 +179,6 @@ def main():
     plt.legend()
     plt.show()
 
-#main()
-
-L = quad_pivot_quicksort_copy(create_random_list(1000))
+main()
 
 
-for i in L:
-    print(i)
