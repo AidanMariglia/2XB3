@@ -166,41 +166,6 @@ def quad_pivot_quicksort_copy(L):
         + quad_pivot_quicksort_copy(temps[3]) + [pivots[3]] \
         + quad_pivot_quicksort_copy(temps[4])
 
-
-def timetest(f, runs, Length):
-    total = 0
-    list1 = []
-    for _ in range(runs):
-        list1 = create_random_list(Length)
-        start = timeit.default_timer()
-        f(list1)
-        end = timeit.default_timer()
-        total += end - start
-    return total/runs
-
-def worst_case_timetest(f, runs, Length):
-    total = 0
-    list1 = []
-    for _ in range(runs):
-        list1 = random_reverse_list(Length)
-        start = timeit.default_timer()
-        f(list1)
-        end = timeit.default_timer()
-        total += end - start
-    return total/runs
-
-def near_sorted_timetest(f, runs, Length, factor):
-    total = 0
-    list1 = []
-    for _ in range(runs):
-        list1 = create_near_sorted_list(Length, factor)
-        start = timeit.default_timer()
-        f(list1)
-        end = timeit.default_timer()
-        total += end - start
-    return total/runs
-
-
 def random_reverse_list(n):
     L = create_random_list(n)
     L.sort()
@@ -209,30 +174,34 @@ def random_reverse_list(n):
         L[i], L[n - 1 - i] = L[n - 1 - i], L[i]
     return L
 
-def main():
-    bubble = []
-    selection = []
-    insertion = []
-    quick = []
-    runs = []
+def final_sort(L):
+    copy = final_sort_copy(L)
 
-    for i in range(2):
-        runs.append(i)
-        bubble.append(near_sorted_timetest(bubble_sort, 20, 1000, i))
-        selection.append(near_sorted_timetest(selection_sort, 20, 1000, i))
-        insertion.append(near_sorted_timetest(insertion_sort, 20, 1000, i))
-        quick.append(near_sorted_timetest(tri_pivot_quicksort, 20, 1000, i))
+    for i in range(len(L)):
+        L[i] = copy[i]
 
-    plt.plot(runs, bubble, label = "bubble")
-    plt.plot(runs, selection, label = "selection")
-    plt.plot(runs, insertion, label = "insertion")
-    plt.plot(runs, quick, label = "quicksort")
-    plt.title("Runtime of sorts vs sorted list")
-    plt.xlabel("Factor of unsorted elements")
-    plt.ylabel("Runtime")
-    plt.legend()
-    plt.show()
+def final_sort_copy(L):
+    if len(L) < 11:
+        return insertion_sort(L)
 
-main()
+    pivots = insertion_sort([L[0], L[1], L[2]])
+    pivot_left = pivots[0]
+    pivot_mid = pivots[1]
+    pivot_right = pivots[2]
+    left, midleft, midright, right = [], [], [], []
 
+    for num in L[3:]:
+        if (num < pivot_left):
+            left.append(num)
+        elif (num < pivot_mid):
+            midleft.append(num)
+        elif (num < pivot_right):
+            midright.append(num)
+        else:
+            right.append(num)
+
+    return tri_pivot_quicksort_copy(left) + [pivot_left] \
+        + tri_pivot_quicksort_copy(midleft) + [pivot_mid] \
+        + tri_pivot_quicksort_copy(midright) + [pivot_right] \
+        + tri_pivot_quicksort_copy(right)
 
