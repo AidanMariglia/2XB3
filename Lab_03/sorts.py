@@ -197,14 +197,53 @@ def random_reverse_list(n):
         L[i], L[n - 1 - i] = L[n - 1 - i], L[i]
     return L
 
+def final_sort(L):
+    copy = final_sort_copy(L)
+
+    for i in range(len(L)):
+        L[i] = copy[i]
+
+def final_sort_copy(L):
+    if len(L) < 11:
+        return insertion_sort(L)
+
+    pivots = insertion_sort([L[0], L[1], L[2]])
+    pivot_left = pivots[0]
+    pivot_mid = pivots[1]
+    pivot_right = pivots[2]
+    left, midleft, midright, right = [], [], [], []
+
+    for num in L[3:]:
+        if (num < pivot_left):
+            left.append(num)
+        elif (num < pivot_mid):
+            midleft.append(num)
+        elif (num < pivot_right):
+            midright.append(num)
+        else:
+            right.append(num)
+
+    return tri_pivot_quicksort_copy(left) + [pivot_left] \
+        + tri_pivot_quicksort_copy(midleft) + [pivot_mid] \
+        + tri_pivot_quicksort_copy(midright) + [pivot_right] \
+        + tri_pivot_quicksort_copy(right)
+
 def main():
-    L = selection_sort(create_random_list(100))
+    quick, final, members = [], [], []
 
-    for i in L:
-        print(i)
+    for i in range(1000, 100000, 1000):
+        quick.append(timetest(tri_pivot_quicksort, 20, i))
+        final.append(timetest(final_sort, 20, i))
+        members.append(i)
 
-list1 = create_random_list(25)
-list2 = bubble_sort(list1)
-print(list2)
+    plt.plot(members, quick, label = "Quick_Sort")
+    plt.plot(members, final, label = "Final_Sort")
+    
+    plt.legend()
+    plt.title("Tri pivot vs. final search")
+    plt.xlabel("Size of List")
+    plt.ylabel("Time")
+    plt.show()
 
+main()
 
