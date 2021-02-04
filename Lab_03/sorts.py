@@ -189,6 +189,18 @@ def worst_case_timetest(f, runs, Length):
         total += end - start
     return total/runs
 
+def near_sorted_timetest(f, runs, Length, factor):
+    total = 0
+    list1 = []
+    for _ in range(runs):
+        list1 = create_near_sorted_list(Length, factor)
+        start = timeit.default_timer()
+        f(list1)
+        end = timeit.default_timer()
+        total += end - start
+    return total/runs
+
+
 def random_reverse_list(n):
     L = create_random_list(n)
     L.sort()
@@ -198,13 +210,29 @@ def random_reverse_list(n):
     return L
 
 def main():
-    L = selection_sort(create_random_list(100))
+    bubble = []
+    selection = []
+    insertion = []
+    quick = []
+    runs = []
 
-    for i in L:
-        print(i)
+    for i in range(2):
+        runs.append(i)
+        bubble.append(near_sorted_timetest(bubble_sort, 20, 1000, i))
+        selection.append(near_sorted_timetest(selection_sort, 20, 1000, i))
+        insertion.append(near_sorted_timetest(insertion_sort, 20, 1000, i))
+        quick.append(near_sorted_timetest(tri_pivot_quicksort, 20, 1000, i))
 
-list1 = create_random_list(25)
-list2 = bubble_sort(list1)
-print(list2)
+    plt.plot(runs, bubble, label = "bubble")
+    plt.plot(runs, selection, label = "selection")
+    plt.plot(runs, insertion, label = "insertion")
+    plt.plot(runs, quick, label = "quicksort")
+    plt.title("Runtime of sorts vs sorted list")
+    plt.xlabel("Factor of unsorted elements")
+    plt.ylabel("Runtime")
+    plt.legend()
+    plt.show()
+
+main()
 
 
