@@ -30,6 +30,40 @@ def merge_bottom(L, start, mid, end):
         elif (aux[j] < aux[i]): L[k] = aux[j]; j += 1
         else :                  L[k] = aux[i]; i += 1
 
+def merge_three(left, mid, right):
+    L = []
+    i = j = k = 0
+
+    while (i < len(left) or j < len(mid) or k < len(right)):
+        # some messy-ish logic to see if there is an empty list
+
+        if (i >= len(left)):
+            #left empty
+            if   (j >= len(mid)): L.append(right[k]); k += 1
+            elif (k >= len(right)): L.append(mid[j]); j += 1
+            else :
+                if (mid[j] < right[k]): L.append(mid[j]); j += 1
+                else :                  L.append(right[k]); k += 1
+
+        elif (j >= len(mid)):
+            #mid empty
+
+            if (i >= len(left)): L.append(right[k]); k += 1
+            elif (k >= len(right)): L.append(left[i]); i += 1
+            else :
+                if (left[i] < right[k]): L.append(left[i]); i += 1
+                else :                   L.append(right[k]); k += 1
+            
+        elif (k >= len(right)):
+            #right empty
+            pass
+        else:
+            #noneempty
+            pass
+    
+
+def mergesort_three():
+    pass
 
 def main():
     test = [4,5,6,1,3,4]
