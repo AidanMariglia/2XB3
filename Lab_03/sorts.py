@@ -1,7 +1,3 @@
-import random
-import math
-import timeit
-import matplotlib.pyplot as plt
 from lab3 import *
 
 def bubble_sort(L):

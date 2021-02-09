@@ -1,4 +1,6 @@
 from sorts import *
+import timeit
+import matplotlib.pyplot as plt
 
 def timetest(f, runs, Length):
     total = 0
