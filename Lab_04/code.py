@@ -53,10 +53,28 @@ def bottom_up_test():
     plt.plot(length, timebottom, label = "Bottom up Merge")
     plt.plot(length, timemerge, label = "Top down Merge")
     plt.title("Average runtime of Bottom up merge vs. Top down merge at progressive list lengths")
-    ply.xlabel("Length of test list")
+    plt.xlabel("Length of test list")
+    plt.ylabel("Running time (s)")
+    plt.legend()
+    plt.show()
+
+def three_way_merge_test():
+    timethreeway = []
+    timemerge = []
+    length = []
+
+    for i in range(1000, 50000, 1000):
+        length.append(i)
+        timethreeway.append(timetest(mergesort_three, 20, i))
+        timemerge.append(timetest(mergesort, 20, i))
+
+    plt.plot(length, timethreeway, label = "Three Way Merge")
+    plt.plot(length, timemerge, label = "Top Down Merge")
+    plt.title("Average Runtime of Three Way Merge vs. Top Down Merge at Progressive List Lengths")
+    plt.xlabel("Length of test list")
     plt.ylabel("Running time (s)")
     plt.legend()
     plt.show()
 
 #near_sorted_list_test1()
-bottom_up_test()
+three_way_merge_test()
