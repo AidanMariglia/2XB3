@@ -1,4 +1,3 @@
-
 #bottom up mergesort adapted from sedgewick wayne
 def mergesort_bottom(L):
     n = len(L)
@@ -54,16 +53,14 @@ def merge_three(left, mid, right):
                 else :                   L.append(right[k]); k += 1
             
         elif (k >= len(right)):
-            print("test")
             #right empty
             if (j >= len(mid)): L.append(left[i]); i += 1
             elif (i >= len(left)): L.append(mid[j]); j += 1
             else:
                 if (left[i] < mid[j]): L.append(left[i]); i += 1
-                else :                 L.append(right[j]); k += 1
+                else :                 L.append(right[j]); j += 1
 
         else:
-            print("hello")
             #noneempty
             if (left[i] < mid[j] and left[i] < right[k]): L.append(left[i]); i += 1
             elif (mid[j] < left[i] and mid[j] < right[k]): L.append(mid[j]); j += 1
@@ -90,7 +87,7 @@ def mergesort_three(L):
     for i in range(len(temp)):
         L[i] = temp[i]
 
-List1 = [0,4,6,2,4,19,8,45,61,16,82]
+List1 = [0, 34, 8, 62, 19, 24]
 
 mergesort_three(List1)
 print(List1)
