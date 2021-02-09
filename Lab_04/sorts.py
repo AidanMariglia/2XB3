@@ -55,12 +55,12 @@ def merge_three(left, mid, right):
         elif (k >= len(right)):
             #right empty
             if (left[i] < mid[j]): L.append(left[i]); i += 1
-            else :                 L.append(right[j]); j += 1
+            else :                 L.append(mid[j]); j += 1
 
         else:
             #noneempty
-            if (left[i] < mid[j] and left[i] < right[k]): L.append(left[i]); i += 1
-            elif (mid[j] < left[i] and mid[j] < right[k]): L.append(mid[j]); j += 1
+            if (left[i] <= mid[j] and left[i] <= right[k]): L.append(left[i]); i += 1
+            elif (mid[j] <= left[i] and mid[j] <= right[k]): L.append(mid[j]); j += 1
             else : L.append(right[k]); k += 1
 
     return L
