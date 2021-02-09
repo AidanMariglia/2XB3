@@ -14,13 +14,13 @@ def near_sorted_timetest(f, runs, Length, factor):
         total += end - start
     return total/runs
 
-def near_sorted_list_test1():
+def near_sorted_list_test():
     merge = []
     runs = []
     factor = 0
     for i in range(6):
         runs.append(factor)
-        merge.append(near_sorted_timetest(mergesort, 20, 100000, factor))
+        merge.append(near_sorted_timetest(mergesort, 50, 10000, factor))
         factor += 0.1
     plt.plot(runs, merge, label = "mergesort")
     plt.title("Runtime of mergesort vs factor of unsorted elements")
@@ -58,5 +58,27 @@ def bottom_up_test():
     plt.legend()
     plt.show()
 
+def three_way_merge_test():
+    timethreeway = []
+    timemerge = []
+    length = []
+
+    #for i in range(10, 100, 10):
+    #    print(i)
+    #    length.append(i)
+    #    timethreeway.append(timetest(mergesort_three, 20, i))
+    #    timemerge.append(timetest(mergesort, 20, i))
+
+    #plt.plot(length, timethreeway, label = "Three Way Merge")
+    #plt.plot(length, timemerge, label = "Top Down Merge")
+    #plt.title("Average Runtime of Three Way Merge vs. Top Down Merge at Progressive List Lengths")
+    #plt.xlabel("Length of test list")
+    #plt.ylabel("Running time (s)")
+    #plt.legend()
+    #plt.show()
+    a = create_random_list(10)
+    mergesort_three(a)
+    print(a)
+
 #near_sorted_list_test1()
-bottom_up_test()
+three_way_merge_test()
