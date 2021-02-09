@@ -47,30 +47,41 @@ def merge_three(left, mid, right):
 
         elif (j >= len(mid)):
             #mid empty
-
-            if (i >= len(left)): L.append(right[k]); k += 1
-            elif (k >= len(right)): L.append(left[i]); i += 1
+            if (k >= len(right)): L.append(left[i]); i += 1
             else :
                 if (left[i] < right[k]): L.append(left[i]); i += 1
                 else :                   L.append(right[k]); k += 1
             
         elif (k >= len(right)):
             #right empty
-            pass
+            if (left[i] < mid[j]): L.append(left[i]); i += 1
+            else :                 L.append(right[j]); k += 1
+
         else:
             #noneempty
-            pass
+            if (left[i] < mid[j] and left[i] < right[k]): L.append(left[i]); i += 1
+            elif (mid[j] < left[i] and mid[j] < right[k]): L.append(mid[j]); j += 1
+            else : L.append(right[k]); k += 1
+
+    return L
     
 
-def mergesort_three():
-    pass
+def mergesort_three(L):
+    
+    if(len(L) <= 1):
+        return
 
-def main():
-    test = [4,5,6,1,3,4]
+    left = L[:len(L)//3]
+    mid = L[len(L)//3:2*len(L)//3]
+    right = L[2*len(L)//3:]
 
-    mergesort_bottom(test)
+    mergesort_three(left)
+    mergesort_three(mid)
+    mergesort_three(right)
 
-    print(test)
+    temp = merge_three(left, mid, right)
 
-main()
+    for i in range(len(temp)):
+        L[i] = temp[i]
+
 
