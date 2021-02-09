@@ -53,7 +53,7 @@ def bottom_up_test():
     plt.plot(length, timebottom, label = "Bottom up Merge")
     plt.plot(length, timemerge, label = "Top down Merge")
     plt.title("Average runtime of Bottom up merge vs. Top down merge at progressive list lengths")
-    plt.xlabel("Length of test list")
+    ply.xlabel("Length of test list")
     plt.ylabel("Running time (s)")
     plt.legend()
     plt.show()
