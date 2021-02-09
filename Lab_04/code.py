@@ -29,4 +29,34 @@ def near_sorted_list_test():
     plt.legend()
     plt.show()
 
-near_sorted_list_test()
+def timetest(f, runs, Length):                                                  
+    total = 0                                                                   
+    list1 = []                                                                  
+    for _ in range(runs):                                                       
+        list1 = create_random_list(Length)                                      
+        start = timeit.default_timer()                                          
+        f(list1)                                                                
+        end = timeit.default_timer()                                            
+        total += end - start                                                    
+    return total/runs 
+
+def bottom_up_test():
+    timebottom = []
+    timemerge = []
+    length = []
+
+    for i in range(1000, 100000, 1000):
+        length.append(i)
+        timebottom.append(timetest(mergesort_bottom, 20, i))
+        timemerge.append(timetest(mergesort, 20, i))
+
+    plt.plot(length, timebottom, label = "Bottom up Merge")
+    plt.plot(length, timemerge, label = "Top down Merge")
+    plt.title("Average runtime of Bottom up merge vs. Top down merge at progressive list lengths")
+    ply.xlabel("Length of test list")
+    plt.ylabel("Running time (s)")
+    plt.legend()
+    plt.show()
+
+#near_sorted_list_test1()
+bottom_up_test()
