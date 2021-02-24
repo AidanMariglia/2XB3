@@ -82,9 +82,3 @@ def mergesort_three(L):
 
     for i in range(len(temp)):
         L[i] = temp[i]
-
-List1 = [12, 5, 75, 62, 14, 8, 17, 87, 0, 4]
-
-mergesort_three(List1)
-
-print(List1)

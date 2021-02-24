@@ -79,13 +79,7 @@ def merge_three_test():
 #near_sorted_list_test1()
 #bottom_up_test()
 
-<<<<<<< HEAD
-a = create_random_list(10)
-mergesort_three(a)
-print(a)
-=======
 #a = create_random_list(10)
 #mergesort_three(a)
 
 merge_three_test()
->>>>>>> 87014cf5aea417fb89313654cb04766d5da97aa6
