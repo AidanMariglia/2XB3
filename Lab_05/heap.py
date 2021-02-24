@@ -14,9 +14,11 @@ class Heap:
             self.sink(i)
 
     def build_heap2(self):
+        pass
         #TODO
 
     def build_heap3(self):
+        pass
         #TODO
 
     def sink(self, i):
