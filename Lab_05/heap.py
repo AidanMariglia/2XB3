@@ -27,10 +27,13 @@ class Heap:
             self.build_heap3()
 
     def is_heap(self, i):
-        if (2 * i + 1 > self.length - 1):
-            return True
-        if(2 * i + 2 > self.length - 1 and self.data[i] < self.data[2 * i + 1]):
-            return True
+        if (2 * i + 2 > self.length - 1):
+            if (2 * i + 1 > self.length - 1):
+                return True
+            if (self.data[i] < self.data[2 * i + 1]):
+                return True
+            else:
+                return False
         if(self.data[i] > self.data[2 * i + 1] or self.data[i] > self.data[2 * i + 2]):
             return self.is_heap(2 * i + 1) and self.is_heap(2 * i + 2)
         else:
@@ -90,9 +93,3 @@ class Heap:
             s += "\n"
             whitespace = whitespace // 2
         return s
-
-obj = [6, 7, 3, 456, 23, 45, 12, 78, 94, 56, 24]
-
-new = Heap(obj)
-
-print(new.__str__())
