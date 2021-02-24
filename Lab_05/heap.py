@@ -7,15 +7,20 @@ class Heap:
     def __init__(self, L):
         self.data = L
         self.length = len(L)
-        self.build_heap1()
+        self.build_heap2()
 
     def build_heap1(self):
         for i in range(self.length // 2 - 1, -1, -1):
             self.sink(i)
 
     def build_heap2(self):
-        pass
-        #TODO
+        aux = []
+        for i in self.data: aux.append(i)
+        
+        self.data = []
+        self.length = 0
+
+        for i in aux: self.insert(i)
 
     def build_heap3(self):
         pass
@@ -75,3 +80,10 @@ class Heap:
             s += "\n"
             whitespace = whitespace // 2
         return s
+
+
+L = [5,4,3,2,1,19,234,3,512,35,5]
+h = Heap(L)
+
+print(str(h))
+print(h.length)
