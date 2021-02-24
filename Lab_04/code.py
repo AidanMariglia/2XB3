@@ -14,13 +14,13 @@ def near_sorted_timetest(f, runs, Length, factor):
         total += end - start
     return total/runs
 
-def near_sorted_list_test1():
+def near_sorted_list_test():
     merge = []
     runs = []
     factor = 0
     for i in range(6):
         runs.append(factor)
-        merge.append(near_sorted_timetest(mergesort, 20, 100000, factor))
+        merge.append(near_sorted_timetest(mergesort, 50, 10000, factor))
         factor += 0.1
     plt.plot(runs, merge, label = "mergesort")
     plt.title("Runtime of mergesort vs factor of unsorted elements")

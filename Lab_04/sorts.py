@@ -1,4 +1,3 @@
-
 #bottom up mergesort adapted from sedgewick wayne
 def mergesort_bottom(L):
     n = len(L)
@@ -83,5 +82,3 @@ def mergesort_three(L):
 
     for i in range(len(temp)):
         L[i] = temp[i]
-
-
