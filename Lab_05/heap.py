@@ -1,4 +1,6 @@
 import math
+import random
+import timeit
 
 class Heap:
     length = 0
@@ -7,7 +9,7 @@ class Heap:
     def __init__(self, L):
         self.data = L
         self.length = len(L)
-        self.build_heap1()
+        self.build_heap3()
 
     def build_heap1(self):
         for i in range(self.length // 2 - 1, -1, -1):
@@ -15,10 +17,14 @@ class Heap:
 
     def build_heap2(self):
         aux = []
-        for i in self.data: aux.append(i)
+        for i in self.data: 
+            aux.append(i)
+
         self.data = []
         self.length = 0
-        for i in aux: self.insert(i)
+
+        for i in aux: 
+            self.insert(i)
 
     def build_heap3(self):
         for i in range(self.length - 1):
@@ -27,9 +33,9 @@ class Heap:
             self.build_heap3()
 
     def is_heap(self, i):
-        if (2 * i + 1 > self.length - 1):
+        if (2 * i + 2 > self.length - 1):
             return True
-        if(2 * i + 2 > self.length - 1 and self.data[i] < self.data[2 * i + 1]):
+        if(2 * i + 1 > self.length - 1 and self.data[i] < self.data[2 * i + 1]):
             return True
         if(self.data[i] > self.data[2 * i + 1] or self.data[i] > self.data[2 * i + 2]):
             return self.is_heap(2 * i + 1) and self.is_heap(2 * i + 2)
@@ -91,8 +97,22 @@ class Heap:
             whitespace = whitespace // 2
         return s
 
-obj = [6, 7, 3, 456, 23, 45, 12, 78, 94, 56, 24]
+def create_random_list(n):
+    L = []
+    for _ in range(n):
+        L.append(random.randint(1,n))
+    return L
 
-new = Heap(obj)
+def timetest(f, runs, Length):                                                  
+    total = 0                                                                   
+    list1 = []                                                                  
+    for _ in range(runs):                                                       
+        list1 = create_random_list(Length)                                      
+        start = timeit.default_timer()                                          
+        f(list1)                                                          
+        end = timeit.default_timer()                                            
+        total += end - start                                                    
+    return total/runs 
 
-print(new.__str__())
+for i in range(10, 110, 10):
+    print(i,timetest(Heap, 10, i))
