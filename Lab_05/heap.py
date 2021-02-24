@@ -16,10 +16,8 @@ class Heap:
     def build_heap2(self):
         aux = []
         for i in self.data: aux.append(i)
-        
         self.data = []
         self.length = 0
-
         for i in aux: self.insert(i)
 
     def build_heap3(self):
