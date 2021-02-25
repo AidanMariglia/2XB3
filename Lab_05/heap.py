@@ -1,4 +1,6 @@
 import math
+import random
+import timeit
 
 class Heap:
     length = 0
@@ -15,10 +17,14 @@ class Heap:
 
     def build_heap2(self):
         aux = []
-        for i in self.data: aux.append(i)
+        for i in self.data: 
+            aux.append(i)
+
         self.data = []
         self.length = 0
-        for i in aux: self.insert(i)
+
+        for i in aux: 
+            self.insert(i)
 
     def build_heap3(self):
         for i in range(self.length - 1):
@@ -30,11 +36,15 @@ class Heap:
         if (2 * i + 2 > self.length - 1):
             if (2 * i + 1 > self.length - 1):
                 return True
-            if (self.data[i] < self.data[2 * i + 1]):
+            if (self.data[i] >= self.data[2 * i + 1]):
                 return True
             else:
                 return False
+<<<<<<< HEAD
+        if(self.data[i] >= self.data[2 * i + 1] and self.data[i] >= self.data[2 * i + 2]):
+=======
         if(self.data[i] > self.data[2 * i + 1] and self.data[i] > self.data[2 * i + 2]):
+>>>>>>> 2c2a4c1e47dba3e538f253a46b28393b2663a0be
             return self.is_heap(2 * i + 1) and self.is_heap(2 * i + 2)
         else:
             return False
@@ -94,9 +104,17 @@ class Heap:
             whitespace = whitespace // 2
         return s
 
+<<<<<<< HEAD
 
 L = [i for i in range(30)]
 
 h = Heap(L)
 
 print(h.data)
+=======
+L = [45, 76, 23, 12, 67, 89, 102, 7, 65, 67]
+
+obj = Heap(L)
+
+print(obj.__str__())
+>>>>>>> a8b506a3c3d38308cd8cd38c0d3555e17d379b5a

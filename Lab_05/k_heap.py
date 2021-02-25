@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+import math
+import random
+
+>>>>>>> a8b506a3c3d38308cd8cd38c0d3555e17d379b5a
 class k_heap:
 
     def __init__(self, values, k):
@@ -7,7 +13,11 @@ class k_heap:
         self.build_heap()
 
     def build_heap(self):
+<<<<<<< HEAD
         for i in range(self.length // self.k - 1, -1, -1):
+=======
+        for i in range(self.length // self.k - 1, -1, -1 ):
+>>>>>>> a8b506a3c3d38308cd8cd38c0d3555e17d379b5a
             self.sink(i)
 
     def parent(self, i):
@@ -19,14 +29,46 @@ class k_heap:
     def sink(self, i):
         largest_known = i
 
-        for j in range(1, self.k + 1):
+        if self.k * i + 1 < self.length and \
+                self.data[self.k * i + 1] > self.data[i]:
+                    largest_known = self.k * i + 1
+
+        for j in range(2, self.k + 1):
             if self.k * i + j < self.length and \
-                self.data[self.k * i + j] > self.data[i]:
+                self.data[self.k * i + j] > self.data[largest_known]:
                     largest_known = self.k * i + j
-        
+
         if largest_known != i:
             self.data[i], self.data[largest_known] =\
-                 self.data[largest_known], self.data[i]
+                self.data[largest_known], self.data[i]
             self.sink(largest_known)
 
+<<<<<<< HEAD
 
+=======
+    def __str__(self):
+        height = math.ceil(math.log(self.length + 1, 2))
+        whitespace = 2 ** height
+        s = ""
+        for i in range(height):
+            for j in range(2 ** i - 1, min(2 ** (i + 1) - 1, self.length)):
+                s += " " * whitespace
+                s += str(self.data[j]) + " "
+            s += "\n"
+            whitespace = whitespace // 2
+        return s
+
+def create_random_list(n):
+    L = []
+    for _ in range(n):
+        L.append(random.randint(1,n))
+    return L
+
+L = create_random_list(10)
+
+print(L)
+
+obj = k_heap(L, 2)
+
+print(obj.__str__())
+>>>>>>> a8b506a3c3d38308cd8cd38c0d3555e17d379b5a
