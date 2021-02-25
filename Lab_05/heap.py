@@ -93,3 +93,10 @@ class Heap:
             s += "\n"
             whitespace = whitespace // 2
         return s
+
+
+L = [i for i in range(30)]
+
+h = Heap(L)
+
+print(h.data)

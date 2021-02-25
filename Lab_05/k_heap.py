@@ -1,5 +1,3 @@
-import math
-
 class k_heap:
 
     def __init__(self, values, k):
@@ -8,8 +6,8 @@ class k_heap:
         self.k = k
         self.build_heap()
 
-    def build_heap(self, values):
-        for i in range(self.length // self.k - 1, -1, -1 ):
+    def build_heap(self):
+        for i in range(self.length // self.k - 1, -1, -1):
             self.sink(i)
 
     def parent(self, i):
@@ -30,3 +28,5 @@ class k_heap:
             self.data[i], self.data[largest_known] =\
                  self.data[largest_known], self.data[i]
             self.sink(largest_known)
+
+
