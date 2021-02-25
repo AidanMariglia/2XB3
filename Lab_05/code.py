@@ -24,5 +24,15 @@ def timetest(f, runs, Length):
         total += end - start                                                    
     return total/runs 
 
+<<<<<<< HEAD
 for i in range(1000, 51000, 1000):
     print(str(i) + "," + str(timetest(Heap, 5, i)))
+=======
+
+#for i in range(100, 1100, 100):
+    #print(str(i) + "," + str(timetest(Heap, 10, i)))
+
+L = create_random_list(20)
+new = Heap(L)
+print(new.__str__())
+>>>>>>> 45b59b949108ad759f2f18053bcb54b47218712c
