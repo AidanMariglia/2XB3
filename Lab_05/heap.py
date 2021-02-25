@@ -9,7 +9,7 @@ class Heap:
     def __init__(self, L):
         self.data = L
         self.length = len(L)
-        self.build_heap3()
+        self.build_heap1()
 
     def build_heap1(self):
         for i in range(self.length // 2 - 1, -1, -1):
@@ -34,10 +34,13 @@ class Heap:
 
     def is_heap(self, i):
         if (2 * i + 2 > self.length - 1):
-            return True
-        if(2 * i + 1 > self.length - 1 and self.data[i] < self.data[2 * i + 1]):
-            return True
-        if(self.data[i] > self.data[2 * i + 1] or self.data[i] > self.data[2 * i + 2]):
+            if (2 * i + 1 > self.length - 1):
+                return True
+            if (self.data[i] >= self.data[2 * i + 1]):
+                return True
+            else:
+                return False
+        if(self.data[i] >= self.data[2 * i + 1] and self.data[i] >= self.data[2 * i + 2]):
             return self.is_heap(2 * i + 1) and self.is_heap(2 * i + 2)
         else:
             return False
@@ -97,22 +100,8 @@ class Heap:
             whitespace = whitespace // 2
         return s
 
-def create_random_list(n):
-    L = []
-    for _ in range(n):
-        L.append(random.randint(1,n))
-    return L
+L = [45, 76, 23, 12, 67, 89, 102, 7, 65, 67]
 
-def timetest(f, runs, Length):                                                  
-    total = 0                                                                   
-    list1 = []                                                                  
-    for _ in range(runs):                                                       
-        list1 = create_random_list(Length)                                      
-        start = timeit.default_timer()                                          
-        f(list1)                                                          
-        end = timeit.default_timer()                                            
-        total += end - start                                                    
-    return total/runs 
+obj = Heap(L)
 
-for i in range(10, 110, 10):
-    print(i,timetest(Heap, 10, i))
+print(obj.__str__())
