@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-=======
 import math
 import random
 
->>>>>>> a8b506a3c3d38308cd8cd38c0d3555e17d379b5a
 class k_heap:
 
     def __init__(self, values, k):
@@ -13,11 +10,7 @@ class k_heap:
         self.build_heap()
 
     def build_heap(self):
-<<<<<<< HEAD
         for i in range(self.length // self.k - 1, -1, -1):
-=======
-        for i in range(self.length // self.k - 1, -1, -1 ):
->>>>>>> a8b506a3c3d38308cd8cd38c0d3555e17d379b5a
             self.sink(i)
 
     def parent(self, i):
@@ -43,9 +36,6 @@ class k_heap:
                 self.data[largest_known], self.data[i]
             self.sink(largest_known)
 
-<<<<<<< HEAD
-
-=======
     def __str__(self):
         height = math.ceil(math.log(self.length + 1, 2))
         whitespace = 2 ** height
@@ -71,4 +61,3 @@ print(L)
 obj = k_heap(L, 2)
 
 print(obj.__str__())
->>>>>>> a8b506a3c3d38308cd8cd38c0d3555e17d379b5a
