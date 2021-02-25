@@ -9,7 +9,7 @@ class Heap:
     def __init__(self, L):
         self.data = L
         self.length = len(L)
-        self.build_heap2()
+        self.build_heap3_optimized()
 
     def build_heap1(self):
         for i in range(self.length // 2 - 1, -1, -1):
@@ -32,6 +32,11 @@ class Heap:
         if (not self.is_heap(0)):
             self.build_heap3()
 
+    def build_heap3_optimized(self):
+        for i in range(self.length - 1):
+            for j in range(int(math.log(self.length, 2))):
+                self.sink(i)
+
     def is_heap(self, i):
         if (2 * i + 2 > self.length - 1):
             if (2 * i + 1 > self.length - 1):
@@ -40,11 +45,7 @@ class Heap:
                 return True
             else:
                 return False
-<<<<<<< HEAD
         if(self.data[i] >= self.data[2 * i + 1] and self.data[i] >= self.data[2 * i + 2]):
-=======
-        if(self.data[i] > self.data[2 * i + 1] and self.data[i] > self.data[2 * i + 2]):
->>>>>>> 2c2a4c1e47dba3e538f253a46b28393b2663a0be
             return self.is_heap(2 * i + 1) and self.is_heap(2 * i + 2)
         else:
             return False
@@ -104,8 +105,3 @@ class Heap:
             whitespace = whitespace // 2
         return s
 
-L = [45, 76, 23, 12, 67, 89, 102, 7, 65, 67]
-
-obj = Heap(L)
-
-print(obj.__str__())

@@ -10,7 +10,7 @@ class k_heap:
         self.build_heap()
 
     def build_heap(self):
-        for i in range(self.length // self.k - 1, -1, -1 ):
+        for i in range(self.length // self.k, -1, -1 ):
             self.sink(i)
 
     def parent(self, i):
@@ -35,29 +35,3 @@ class k_heap:
             self.data[i], self.data[largest_known] =\
                 self.data[largest_known], self.data[i]
             self.sink(largest_known)
-
-    def __str__(self):
-        height = math.ceil(math.log(self.length + 1, 2))
-        whitespace = 2 ** height
-        s = ""
-        for i in range(height):
-            for j in range(2 ** i - 1, min(2 ** (i + 1) - 1, self.length)):
-                s += " " * whitespace
-                s += str(self.data[j]) + " "
-            s += "\n"
-            whitespace = whitespace // 2
-        return s
-
-def create_random_list(n):
-    L = []
-    for _ in range(n):
-        L.append(random.randint(1,n))
-    return L
-
-L = create_random_list(10)
-
-print(L)
-
-obj = k_heap(L, 2)
-
-print(obj.__str__())
