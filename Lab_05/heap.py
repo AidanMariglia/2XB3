@@ -7,7 +7,7 @@ class Heap:
     def __init__(self, L):
         self.data = L
         self.length = len(L)
-        self.build_heap1()
+        self.build_heap2()
 
     def build_heap1(self):
         for i in range(self.length // 2 - 1, -1, -1):
@@ -34,7 +34,7 @@ class Heap:
                 return True
             else:
                 return False
-        if(self.data[i] > self.data[2 * i + 1] or self.data[i] > self.data[2 * i + 2]):
+        if(self.data[i] > self.data[2 * i + 1] and self.data[i] > self.data[2 * i + 2]):
             return self.is_heap(2 * i + 1) and self.is_heap(2 * i + 2)
         else:
             return False

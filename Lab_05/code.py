@@ -19,5 +19,5 @@ def timetest(f, runs, Length):
         total += end - start                                                    
     return total/runs 
 
-for i in range(100, 5100, 100):
+for i in range(1000, 51000, 1000):
     print(str(i) + "," + str(timetest(Heap, 5, i)))
