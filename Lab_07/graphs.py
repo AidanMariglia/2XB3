@@ -102,18 +102,19 @@ def has_cycle(G):
     return has_cycle_rec(G, 0, marked)
 
 def has_cycle_rec(G, start, marked):    
-    S = [start]
-    parent_node = -1
+    S = [(start, -1)]
     while len(S) != 0:
-        current_node = S.pop()
+        t = S.pop()
+        current_node = t[0]
+        parent_node = t[1]
         if not marked[current_node]:
             marked[current_node] = True
             for node in G.adj[current_node]:
                 if node != parent_node and marked[node] and G.are_connected(node, parent_node):
                     print("test", node, parent_node, current_node)
                     return True
-                S.append(node)
-        parent_node = current_node
+                S.append((node, current_node))
+
 
     for node in marked:
         if not marked[node]:
