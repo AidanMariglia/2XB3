@@ -44,18 +44,44 @@ def DFS2(G, node1, node2):
 def DFS3(G, node1):
     path = {}
     S = [node1]
-    marked = {}
+    marked = {node1 : True}
     
     for node in G.adj:
-        marked[node] = False
+        if node != node1:
+            marked[node] = False
     
     while len(S) != 0:
         current_node = S.pop()
-        if not marked[current_node]:
-            marked[current_node] = True
-            for node in G.adj[current_node]:
-                if marked[node] == False:
-                    print(current_node)
-                    path[node] = current_node
+        for node in G.adj[current_node]:
+            if marked[node] == False:
                 S.append(node)
+                marked[node] = True
+                    
+                if node not in path:
+                    path[node] = current_node
     return path
+
+def BFS3(G, start):
+    Q = deque([start])
+    marked = {start : True}
+    pred = {}
+    for node in G.adj:
+        if node != start:
+            marked[node] = False
+
+    while len(Q) != 0:
+        current_node = Q.popleft()
+        for node in G.adj[current_node]:
+            if not marked[node]:
+                Q.append(node)
+                marked[node] = True
+
+                if node not in pred:
+                    pred[node] = current_node
+
+    return pred
+
+
+
+
+
