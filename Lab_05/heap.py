@@ -40,7 +40,7 @@ class Heap:
                 return True
             else:
                 return False
-        if(self.data[i] >= self.data[2 * i + 1] and self.data[i] >= self.data[2 * i + 2]):
+        if(self.data[i] > self.data[2 * i + 1] and self.data[i] > self.data[2 * i + 2]):
             return self.is_heap(2 * i + 1) and self.is_heap(2 * i + 2)
         else:
             return False
@@ -100,3 +100,8 @@ class Heap:
             whitespace = whitespace // 2
         return s
 
+L = [45, 76, 23, 12, 67, 89, 102, 7, 65, 67]
+
+obj = Heap(L)
+
+print(obj.__str__())
