@@ -62,6 +62,16 @@ def BFS3(G, start):
     return pred
 
 
+def is_connected(G):
+    if G.number_of_nodes() == 0: return False
+
+    connections = BFS3(G, 1) 
+    
+    if len(connections) + 1 != G.number_of_nodes():
+        return False
+    else:
+        return True
+
 
 
 

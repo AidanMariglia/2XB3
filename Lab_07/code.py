@@ -1,10 +1,7 @@
 from graphs import *
 
 def test_BFS2():
-    test = Graph(6)
-
-    for i in range(1,7):
-        test.add_node()
+    test = Graph(7)
 
     test.add_edge(6,4)
     test.add_edge(4,3)
@@ -18,9 +15,7 @@ def test_BFS2():
 
 def test_BFS3():
 
-    test = Graph(6)
-    for i in range(1,7):
-        test.add_node()
+    test = Graph(7)
 
     test.add_edge(1,2)
     test.add_edge(1,3)
@@ -35,11 +30,7 @@ def test_BFS3():
 def test_DFS2():
     test = Graph(6)
 
-    for i in range(1,7):
-        test.add_node()
 
-    test.add_edge(6,4)
-    test.add_edge(4,3)
     test.add_edge(4,5)
     test.add_edge(5,2)
     test.add_edge(3,2)
@@ -48,4 +39,20 @@ def test_DFS2():
 
     print(DFS2(test, 4, 2))
 
-test_DFS2()
+def test_is_connected():
+    test = Graph(7)
+    
+    test.add_edge(0,1)
+    test.add_edge(1,2)
+    test.add_edge(1,3)
+    test.add_edge(2,4)
+    test.add_edge(3,5)
+    test.add_edge(3,4)
+    test.add_edge(5,4)
+    test.add_edge(6,4)
+    
+    
+    print(is_connected(test))
+
+test_is_connected()
+
