@@ -22,7 +22,7 @@ def BFS2(G, node1, node2):
     return []
 
 def DFS2(G, node1, node2):
-    path = []
+    path = {node1 : [node1]}
     S = [node1]
     marked = {}
     
@@ -35,23 +35,9 @@ def DFS2(G, node1, node2):
             marked[current_node] = True
             for node in G.adj[current_node]:
                 if marked[node] == False:
-                    path.append(current_node)
+                    print(current_node)
+                    path[node] = path[current_node] + [node]
                 if node == node2:
-                    path.append(node2)
-                    return path
+                    return path[current_node] + [node]
                 S.append(node)
-    return path
-
-
-
-new = Graph(10)
-
-new.add_edge(1, 2)
-
-new.add_edge(2, 5)
-
-new.add_edge(5, 8)
-
-new.add_edge(8, 3)
-
-print(DFS2(new, 1, 3))
+    return []
