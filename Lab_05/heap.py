@@ -9,7 +9,7 @@ class Heap:
     def __init__(self, L):
         self.data = L
         self.length = len(L)
-        self.build_heap3_optimized()
+        self.build_heap3()
 
     def build_heap1(self):
         for i in range(self.length // 2 - 1, -1, -1):
@@ -31,11 +31,6 @@ class Heap:
             self.sink(i)
         if (not self.is_heap(0)):
             self.build_heap3()
-
-    def build_heap3_optimized(self):
-        for i in range(self.length - 1):
-            for j in range(int(math.log(self.length, 2))):
-                self.sink(i)
 
     def is_heap(self, i):
         if (2 * i + 2 > self.length - 1):
