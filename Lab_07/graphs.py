@@ -42,9 +42,25 @@ def DFS2(G, node1, node2):
                 S.append(node)
     return path
 
-def BFS3(G, node):
-    pass
+def BFS3(G, start):
+    Q = deque([start])
+    marked = {start : True}
+    pred = {}
+    for node in G.adj:
+        if node != start:
+            marked[node] = False
 
+    while len(Q) != 0:
+        current_node = Q.popleft()
+        for node in G.adj[current_node]:
+            if not marked[node]:
+                Q.append(node)
+                marked[node] = True
+
+                if node not in pred:
+                    pred[node] = current_node
+
+    return pred
 
 
 
