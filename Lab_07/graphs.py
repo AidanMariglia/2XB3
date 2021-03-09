@@ -42,16 +42,11 @@ def DFS2(G, node1, node2):
                 S.append(node)
     return path
 
+def BFS3(G, node):
+    pass
 
 
-new = Graph(10)
 
-new.add_edge(1, 2)
 
-new.add_edge(2, 5)
 
-new.add_edge(5, 8)
 
-new.add_edge(8, 3)
-
-print(DFS2(new, 1, 3))

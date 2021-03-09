@@ -14,6 +14,6 @@ def test_BFS2():
     test.add_edge(5,1)
     test.add_edge(2,1)
 
-    print(BFS2(test, 4, 2))
+    print(BFS2(test, 1, 6))
 
 test_BFS2()
