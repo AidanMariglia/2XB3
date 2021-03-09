@@ -35,7 +35,6 @@ def DFS2(G, node1, node2):
             marked[current_node] = True
             for node in G.adj[current_node]:
                 if marked[node] == False:
-                    print(current_node)
                     path[node] = path[current_node] + [node]
                 if node == node2:
                     return path[current_node] + [node]
