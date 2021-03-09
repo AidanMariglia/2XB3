@@ -91,30 +91,34 @@ def is_connected(G):
         return False
     else:
         return True
+    
 
 def has_cycle(G):
-    Q = deque([0])
-    marked = {0 : True}
-    pred = {}
+    return has_cycle_rec(G, 0)
+
+def has_cycle_rec(G, start):    
+    S = [start]
+    marked = {}
+
     for node in G.adj:
-        if node != 0:
-            marked[node] = False
+        marked[node] = False
 
-    while len(Q) != 0:
-        current_node = Q.popleft()
-        for node in G.adj[current_node]:
-            if not marked[node]:
-                Q.append(node)
-                marked[node] = True
-
-                if node not in pred:
-                    pred[node] = current_node
-
-            else:
-                if node not in pred:
+    parent_node = -1
+    while len(S) != 0:
+        current_node = S.pop()
+        if not marked[current_node]:
+            marked[current_node] = True
+            for node in G.adj[current_node]:
+                if node != parent_node and marked[node]:
                     return True
-            
+                S.append(node)
+        parent_node = current_node
+
+    for node in marked:
+        if not marked[node]:
+            return has_cycle_rec(G, node)
 
     return False
+
 
 

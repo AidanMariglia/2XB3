@@ -27,8 +27,6 @@ def test_BFS3():
 
     print(BFS3(test, 1))
 
-test_BFS3()
-
 def test_DFS2():
     test = Graph(6)
 
@@ -53,8 +51,32 @@ def test_is_connected():
     test.add_edge(5,4)
     test.add_edge(6,4)
     
-    
+
     print(is_connected(test))
 
-test_is_connected()
+def test_has_cycle():
+
+    test = Graph(7)
+
+    test.add_edge(0,1)
+    test.add_edge(1,2)
+    test.add_edge(1,3)
+    test.add_edge(2,4)
+    test.add_edge(3,5)
+    test.add_edge(3,4)
+    test.add_edge(5,4)
+    test.add_edge(4,6)
+
+    test2 = Graph(5)
+
+    test2.add_edge(0,1)
+
+    test2.add_edge(2,3)
+    test2.add_edge(3,4)
+    test2.add_edge(4,2)
+    print(has_cycle(test2))
+
+test_has_cycle()
+
+
 
