@@ -41,6 +41,7 @@ def test_DFS2():
 
     print(DFS2(test, 4, 2))
 
+<<<<<<< HEAD
 test_DFS2()
 
 def test_DFS3():
@@ -49,6 +50,11 @@ def test_DFS3():
     for i in range(1,7):
         test.add_node()
 
+=======
+def test_is_connected():
+    test = Graph(7)
+    
+>>>>>>> 31cf42129385edf9eddff6d88bfd48e16b6b07cb
     test.add_edge(0,1)
     test.add_edge(1,2)
     test.add_edge(1,3)
@@ -56,12 +62,15 @@ def test_DFS3():
     test.add_edge(3,5)
     test.add_edge(3,4)
     test.add_edge(5,4)
+<<<<<<< HEAD
     test.add_edge(4,6)
 
     print(DFS3(test, 1))
 
 def test_is_connected():
     test = Graph(7)
+=======
+>>>>>>> 31cf42129385edf9eddff6d88bfd48e16b6b07cb
     test.add_edge(6,4)
     
     print(is_connected(test))
