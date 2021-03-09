@@ -109,7 +109,8 @@ def has_cycle_rec(G, start, marked):
         if not marked[current_node]:
             marked[current_node] = True
             for node in G.adj[current_node]:
-                if node != parent_node and marked[node]:
+                if node != parent_node and marked[node] and G.are_connected(node, parent_node):
+                    print("test", node, parent_node, current_node)
                     return True
                 S.append(node)
         parent_node = current_node

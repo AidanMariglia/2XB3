@@ -97,6 +97,7 @@ def create_random_graph(k, c):
     while count > 0:
         node1 = random.randint(0, k - 1)
         node2 = random.randint(0, k - 1)
+        print(node1,node2)
         if graph.are_connected(node1, node2) or node1 == node2:
             pass
         else:
@@ -117,10 +118,12 @@ def portion_of_connected_graphs():
 
 def portion_of_graphs_with_cycle():
     count = 0
-    for i in range(0, 500, 10):
-        for j in range(100):
+    for i in range(11, 12, 1):
+        for j in range(1):
             new = create_random_graph(100, i)
             if has_cycle(new):
                 count += 1
         print(i, count/100)
         count = 0
+
+portion_of_graphs_with_cycle()
