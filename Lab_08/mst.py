@@ -9,18 +9,26 @@ def prim2(G):
     #as the greatest possible edge weight is 1000,
     #1001 will be used to represent infinity
     inf = 1001
-    A = [0]
+    A = {0}
     mst = WeightedGraph(G.number_of_nodes())
     edges = MinHeap([Element(node, inf) for node in range(G.number_of_nodes())])
 
 
     for node in G.adjacent_nodes(0):
-        edges.decrease_key(node, G.w(node, 0))
-
-    while edges.length != 0:
+        edges.decrease_key(node[0], G.w(node[0], 0))
+    
+    prevMin = 0
+    while not edges.is_empty():
         u = edges.extract_min()
-        mst.add_edge()
-        for v in G.adjacent_nodes(u.value):
-            edges.decrease_key(v, G.w(v, u.value))
+        mst.add_edge(u.value, prevMin, G.w(u.value, prevMin))
+        print("adding edge between: " + str(u.value) + " and: " + str(prevMin))
+        A.add(u.value)
+        for node in G.adjacent_nodes(u.value):
+            if node[0] not in A and \
+                edges.get_element_from_value(node[0]).key > G.w(node[0], u.value):
+                    edges.decrease_key(node[0], G.w(node[0], u.value))
+        prevMin = u.value
+
+    return mst
 
     
