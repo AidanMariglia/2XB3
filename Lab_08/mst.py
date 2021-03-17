@@ -20,10 +20,10 @@ def prim2(G):
     prevMin = 0
     while not edges.is_empty():
         u = edges.extract_min()
-        mst.add_edge(u.value, prevMin, G.w(u.value, prevMin))
-        print("adding edge between: " + str(u.value) + " and: " + str(prevMin))
         A.add(u.value)
         for node in G.adjacent_nodes(u.value):
+            if u.key == node[1]:
+                mst.add_edge(u.value, prevMin, G.w(u.value, prevMin))
             if node[0] not in A and \
                 edges.get_element_from_value(node[0]).key > G.w(node[0], u.value):
                     edges.decrease_key(node[0], G.w(node[0], u.value))
