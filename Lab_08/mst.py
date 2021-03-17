@@ -1,4 +1,5 @@
 from lab8 import *
+from min_heap import *
 
 def prim1(WGraph):
     if WGraph.number_of_nodes() == 0:
@@ -18,7 +19,31 @@ def prim1(WGraph):
         A.append(len(A))
     print(A)
     return MST
-    
+
+def prim2(G):
+    inf = 1001
+    edges = MinHeap([Element(node, inf) for node in range(1,G.number_of_nodes())])
+    mst = WeightedGraph(G.number_of_nodes())
+    marked = [False for _ in range(G.number_of_nodes())]
+
+    for node in (G.adjacent_nodes(0)):
+        edges.decrease_key(node[0], node[1])
+    marked[0] = True
+
+    while not edges.is_empty():
+        u = edges.extract_min()
+        for node in G.adjacent_nodes(u.value):
+            if u.key == node[1]:
+                mst.add_edge(node[0], u.value, u.key)
+                marked[u.value] = True
+                print("marked " + str(u.value))
+
+        for node in (G.adjacent_nodes(u.value)):
+            if not marked[node[0]]:
+                print("decreasing key " + str(node[0]))
+                edges.decrease_key(node[0], node[1])
+
+    return mst
 
 test = WeightedGraph(7)
 test.add_edge(0, 1, 1)
@@ -44,37 +69,3 @@ print(test2.adjacent_nodes(3))
 print(test2.adjacent_nodes(4))
 print(test2.adjacent_nodes(5))
 print(test2.adjacent_nodes(6))
-
-from min_heap import *
-
-def prim2(G):
-
-    if G.number_of_nodes() == 0:
-        return G
-
-    #as the greatest possible edge weight is 1000,
-    #1001 will be used to represent infinity
-    inf = 1001
-    A = {0}
-    mst = WeightedGraph(G.number_of_nodes())
-    edges = MinHeap([Element(node, inf) for node in range(G.number_of_nodes())])
-
-
-    for node in G.adjacent_nodes(0):
-        edges.decrease_key(node[0], G.w(node[0], 0))
-    
-    prevMin = 0
-    while not edges.is_empty():
-        u = edges.extract_min()
-        mst.add_edge(u.value, prevMin, G.w(u.value, prevMin))
-        print("adding edge between: " + str(u.value) + " and: " + str(prevMin))
-        A.add(u.value)
-        for node in G.adjacent_nodes(u.value):
-            if node[0] not in A and \
-                edges.get_element_from_value(node[0]).key > G.w(node[0], u.value):
-                    edges.decrease_key(node[0], G.w(node[0], u.value))
-        prevMin = u.value
-
-    return mst
-
-    

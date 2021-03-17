@@ -54,6 +54,8 @@ class MinHeap:
   
     def extract_min(self):
         self.data[0], self.data[self.length - 1] = self.data[self.length - 1], self.data[0]
+        self.map[self.data[self.length - 1].value] = self.length - 1
+        self.map[self.data[0].value] = 0
         min_element = self.data[self.length - 1]
         self.length -= 1
         self.map.pop(min_element.value)
