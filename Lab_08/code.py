@@ -62,38 +62,23 @@ def prim2Test():
 
 
 def compare_test(nodes):
-    for i in range(nodes, 100, 50):
-        print(str(i) + "," + str(timetest(prim1, prim2, 1, nodes, i)))
+    for i in range(nodes, 950, 50):
+        print(str(i) + "," + str(timetest(prim1, prim2, 25, nodes, i)))
 
 def timetest(f1, f2, runs, nodes, edges):
     total1 = 0
     total2 = 0
+    total3 = 0
     for _ in range(runs):
         rand_graph = generate_random_graph(nodes, edges)                                                 
         start = timeit.default_timer()                                          
-        test2 = f1(rand_graph)
-        print(test2.number_of_nodes())
-        print(test2.adjacent_nodes(0))
-        print(test2.adjacent_nodes(1))
-        print(test2.adjacent_nodes(2))
-        print(test2.adjacent_nodes(3))
-        print(test2.adjacent_nodes(4))
-        print(test2.adjacent_nodes(5))
-        print(test2.adjacent_nodes(6))                                                               
-        end = timeit.default_timer()
+        f1(rand_graph)
+        end = timeit.default_timer()                                                             
         total1 += end - start                                      
         start = timeit.default_timer()                                          
-        test1 = f2(rand_graph) 
-        print(test1.number_of_nodes())
-        print(test1.adjacent_nodes(0))
-        print(test1.adjacent_nodes(1))
-        print(test1.adjacent_nodes(2))
-        print(test1.adjacent_nodes(3))
-        print(test1.adjacent_nodes(4))
-        print(test1.adjacent_nodes(5))
-        print(test1.adjacent_nodes(6))                                                               
-        end = timeit.default_timer()                                          
-        total2 += end - start                                                    
+        f2(rand_graph)
+        end = timeit.default_timer()                                                                                                        
+        total2 += end - start                                                  
     return total1/runs, total2/runs
 
 def generate_random_graph(nodes, edges):
@@ -122,4 +107,4 @@ def generate_random_graph(nodes, edges):
 
     return randomGraph
 
-compare_test(50)
+compare_test(100)

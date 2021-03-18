@@ -8,15 +8,17 @@ def prim1(G):
     edge_node = 0
     MST = WeightedGraph(G.number_of_nodes())
     A = [0]
-    while(len(A) <= G.number_of_nodes()):
+    while(len(A) - 1 < G.number_of_nodes()):
         min_edge = 1001
-        for edge_info in G.adj[len(A) - 1]:
-            if edge_info[1] < min_edge:
-                min_edge = edge_info[1]
-                edge_node = edge_info[0]
-        if not MST.are_connected(len(A) - 1, edge_node):
-            MST.add_edge(len(A) - 1, edge_node, min_edge)
-        A.append(len(A))
+        for i in A:
+            for edge_info in G.adj[i]:
+                if edge_info[1] < min_edge and not A.__contains__(edge_info[0]):
+                    node1 = i
+                    min_edge = edge_info[1]
+                    edge_node = edge_info[0]
+        if not MST.are_connected(node1, edge_node):
+            MST.add_edge(node1, edge_node, min_edge)
+        A.append(edge_node)
     return MST
 
 def prim2(G):
