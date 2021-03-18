@@ -100,5 +100,5 @@ def generate_random_graph(nodes, edges):
     return randomGraph
 
 #prim1Test()
-compare_test(500)
+compare_test(50)
 
