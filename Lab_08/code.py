@@ -18,7 +18,7 @@ def prim1Test():
     test.add_edge(5, 6, 24)
 
     test2 = prim1(test)
-    test1 = prim2_2(test)
+    test1 = prim2(test)
 
     print(test2.number_of_nodes())
     print(test2.adjacent_nodes(0))
