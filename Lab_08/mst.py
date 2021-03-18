@@ -57,7 +57,7 @@ def prim2_2(G):
     marked[0] = True
 
     while not edges.is_empty():
-        u = edges.extract_min()
+
         for node in G.adjacent_nodes(prevMin.value):
             if not marked[node[0]]:
                 edges.decrease_key(node[0], node[1])
