@@ -20,44 +20,28 @@ def prim1(G):
     return MST
 
 def prim2(G):
+    if G.number_of_nodes() == 0:
+        return G
     inf = 1001
-    edges = MinHeap([Element(node, inf) for node in range(0,G.number_of_nodes())])
-    mst = WeightedGraph(G.number_of_nodes())
-    marked = [False for _ in range(G.number_of_nodes())]
-    u = edges.get_min()
-    marked[u.value] = True
-    while not edges.is_empty():
-        print(u.value)
-        for node in (G.adjacent_nodes(u.value)):
-            print(node[0], node[1])
-            edges.decrease_key(node[0], node[1])
-        v = u.value
-        u = edges.get_min()
-        mst.add_edge(v, u.value, u.key)
-
-    return mst
-
-def prim2_2(G):
-    inf = 1001
-    edges = MinHeap([Element(node, inf) for node in range(1,G.number_of_nodes())])
+    edges = MinHeap([Element(node, inf) for node in range(G.number_of_nodes())])
     mst = WeightedGraph(G.number_of_nodes())
     marked = [False for _ in range(G.number_of_nodes())]
 
-    for node in (G.adjacent_nodes(0)):
-        edges.decrease_key(node[0], node[1])
-    
-    prevMin = Element(0, inf)
-    marked[0] = True
+    #for node in (G.adjacent_nodes(0)):
+    #    edges.decrease_key(node[0], node[1])
+    #marked[0] = True
 
     while not edges.is_empty():
-
-        for node in G.adjacent_nodes(prevMin.value):
+        u = edges.extract_min()
+        marked[u.value] = True
+        flag = False
+        for node in G.adjacent_nodes(u.value):
             if not marked[node[0]]:
                 edges.decrease_key(node[0], node[1])
-        
-        newMin = edges.extract_min()
-        marked[newMin.value] = True
-        mst.add_edge(prevMin.value, newMin.value, newMin.key)
-        prevMin = newMin
+            
+            elif u.key == node[1] and not flag:
+                mst.add_edge(node[0], u.value, u.key)
+                flag = True
+                
 
     return mst
