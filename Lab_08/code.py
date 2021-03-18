@@ -18,6 +18,7 @@ def prim1Test():
     test.add_edge(5, 6, 24)
 
     test2 = prim1(test)
+    test1 = prim2(test)
 
     print(test2.number_of_nodes())
     print(test2.adjacent_nodes(0))
@@ -27,6 +28,17 @@ def prim1Test():
     print(test2.adjacent_nodes(4))
     print(test2.adjacent_nodes(5))
     print(test2.adjacent_nodes(6))
+
+    print()
+
+    print(test1.number_of_nodes())
+    print(test1.adjacent_nodes(0))
+    print(test1.adjacent_nodes(1))
+    print(test1.adjacent_nodes(2))
+    print(test1.adjacent_nodes(3))
+    print(test1.adjacent_nodes(4))
+    print(test1.adjacent_nodes(5))
+    print(test1.adjacent_nodes(6))
 
 def prim2Test():
     graph = WeightedGraph(4)
@@ -87,4 +99,5 @@ def generate_random_graph(nodes, edges):
 
     return randomGraph
 
-compare_test(50)
+compare_test(500)
+
