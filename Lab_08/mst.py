@@ -63,6 +63,7 @@ def prim2_2(G):
                 edges.decrease_key(node[0], node[1])
         
         newMin = edges.extract_min()
+        marked[newMin.value] = True
         mst.add_edge(prevMin.value, newMin.value, newMin.key)
         prevMin = newMin
 

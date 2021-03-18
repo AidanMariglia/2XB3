@@ -18,7 +18,7 @@ def prim1Test():
     test.add_edge(5, 6, 24)
 
     test2 = prim1(test)
-    test1 = prim2(test)
+    test1 = prim2_2(test)
 
     print(test2.number_of_nodes())
     print(test2.adjacent_nodes(0))
@@ -99,5 +99,6 @@ def generate_random_graph(nodes, edges):
 
     return randomGraph
 
-compare_test(500)
+prim1Test()
+#compare_test(500)
 
