@@ -1,5 +1,6 @@
 from mst import *
 from random import shuffle, randint
+import timeit
 
 def prim1Test():
     test = WeightedGraph(7)
@@ -41,8 +42,24 @@ def prim2Test():
         print(mst.adjacent_nodes(i))
 
 
-def compare_test():
-    pass
+def compare_test(nodes, edges, inc):
+    for i in range(50, 950, 50):
+        print(str(i) + "," + str(timetest(prim1, prim2, 10, nodes, i)))
+
+def timetest(f1, f2, runs, nodes, edges):
+    total1 = 0
+    total2 = 0
+    for _ in range(runs):                                                       
+        rand_graph = generate_random_graph(nodes, edges)                                      
+        start = timeit.default_timer()                                          
+        f1(rand_graph)                                                                
+        end = timeit.default_timer()
+        total1 += end - start
+        start = timeit.default_timer()                                          
+        f2(rand_graph)                                                                
+        end = timeit.default_timer()                                          
+        total2 += end - start                                                    
+    return (total1/runs, total2/runs)
 
 def generate_random_graph(nodes, edges):
     edgeWeights = [i for i in range(1,1001)]
