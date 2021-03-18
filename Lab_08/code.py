@@ -1,4 +1,5 @@
 from mst import *
+from random import shuffle, randint
 
 def prim1Test():
     test = WeightedGraph(7)
@@ -44,4 +45,27 @@ def compare_test():
     pass
 
 def generate_random_graph(nodes, edges):
-    pass
+    edgeWeights = [i for i in range(1,1001)]
+    unVisitedNodes = [i for i in range(nodes)]
+    shuffle(edgeWeights)
+    shuffle(unVisitedNodes)
+    randomGraph = WeightedGraph(nodes)
+
+    currNode = unVisitedNodes.pop()
+    while len(unVisitedNodes) > 0:
+        nextNode = unVisitedNodes.pop()
+        randomGraph.add_edge(currNode, nextNode, edgeWeights.pop())
+        currNode = nextNode
+
+    for i in range(edges - (nodes + 1)):
+
+        node1 = randint(0, nodes - 1)
+        node2 = randint(0, nodes - 1)
+
+        while node1 == node2 or randomGraph.are_connected(node1, node2):
+            node1 = randint(0, nodes - 1)
+            node2 = randint(0, nodes - 1)
+
+        randomGraph.add_edge(node1, node2, edgeWeights.pop())
+
+    return randomGraph
