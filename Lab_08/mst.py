@@ -29,37 +29,37 @@ def prim2(G):
     marked[0] = True
     u = edges.extract_min()
     while not edges.is_empty():
-        for node in G.adjacent_nodes(u.value):
+        if not marked[node[0]]:
             edges.decrease_key(node[0], node[1])
-        u = edges.extract_min()
+
+        #for node in (G.adjacent_nodes(u.value)):
+        #    if not marked[node[0]]:
+        #        edges.decrease_key(node[0], node[1])
+
     return mst
 
-def generate_random_graph(nodes, edges):
-    edgeWeights = [i for i in range(1,1001)]
-    unVisitedNodes = [i for i in range(nodes)]
-    shuffle(edgeWeights)
-    shuffle(unVisitedNodes)
-    randomGraph = WeightedGraph(nodes)
+def prim2_2(G):
+    inf = 1001
+    edges = MinHeap([Element(node, inf) for node in range(1,G.number_of_nodes())])
+    mst = WeightedGraph(G.number_of_nodes())
+    marked = [False for _ in range(G.number_of_nodes())]
 
-    currNode = unVisitedNodes.pop()
-    while len(unVisitedNodes) > 0:
-        nextNode = unVisitedNodes.pop()
-        randomGraph.add_edge(currNode, nextNode, edgeWeights.pop())
-        currNode = nextNode
+    for node in (G.adjacent_nodes(0)):
+        edges.decrease_key(node[0], node[1])
+    
+    prevMin = Element(0, inf)
+    marked[0] = True
 
-    for i in range(edges - (nodes + 1)):
+    while not edges.is_empty():
+        u = edges.extract_min()
+        for node in G.adjacent_nodes(prevMin.value):
+            if not marked[node[0]]:
+                edges.decrease_key(node[0], node[1])
+        
+        newMin = edges.extract_min()
+        mst.add_edge(prevMin.value, newMin.value, newMin.key)
+        prevMin = newMin
 
-        node1 = randint(0, nodes - 1)
-        node2 = randint(0, nodes - 1)
+            
 
-        while node1 == node2 or randomGraph.are_connected(node1, node2):
-            node1 = randint(0, nodes - 1)
-            node2 = randint(0, nodes - 1)
-
-        randomGraph.add_edge(node1, node2, edgeWeights.pop())
-
-    return randomGraph
-
-test = generate_random_graph(50, 50)
-
-prim2(test)
+    return mst
