@@ -13,11 +13,9 @@ def prim1(WGraph):
             if edge_info[1] < min_edge:
                 min_edge = edge_info[1]
                 edge_node = edge_info[0]
-        print(edge_node)
         if not MST.are_connected(len(A) - 1, edge_node):
             MST.add_edge(len(A) - 1, edge_node, min_edge)
         A.append(len(A))
-    print(A)
     return MST
 
 def prim2(G):
@@ -36,11 +34,9 @@ def prim2(G):
             if u.key == node[1]:
                 mst.add_edge(node[0], u.value, u.key)
                 marked[u.value] = True
-                print("marked " + str(u.value))
 
         for node in (G.adjacent_nodes(u.value)):
             if not marked[node[0]]:
-                print("decreasing key " + str(node[0]))
                 edges.decrease_key(node[0], node[1])
 
     return mst

@@ -42,8 +42,8 @@ def prim2Test():
         print(mst.adjacent_nodes(i))
 
 
-def compare_test(nodes, edges, inc):
-    for i in range(50, 950, 50):
+def compare_test(nodes):
+    for i in range(nodes, 950, 50):
         print(str(i) + "," + str(timetest(prim1, prim2, 10, nodes, i)))
 
 def timetest(f1, f2, runs, nodes, edges):
@@ -59,7 +59,7 @@ def timetest(f1, f2, runs, nodes, edges):
         f2(rand_graph)                                                                
         end = timeit.default_timer()                                          
         total2 += end - start                                                    
-    return (total1/runs, total2/runs)
+    return total1/runs, total2/runs
 
 def generate_random_graph(nodes, edges):
     edgeWeights = [i for i in range(1,1001)]
@@ -86,3 +86,5 @@ def generate_random_graph(nodes, edges):
         randomGraph.add_edge(node1, node2, edgeWeights.pop())
 
     return randomGraph
+
+compare_test(50)
