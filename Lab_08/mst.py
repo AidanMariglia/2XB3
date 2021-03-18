@@ -36,11 +36,9 @@ def prim2(G):
             if u.key == node[1]:
                 mst.add_edge(node[0], u.value, u.key)
                 marked[u.value] = True
-                print("marked " + str(u.value))
 
         for node in (G.adjacent_nodes(u.value)):
             if not marked[node[0]]:
-                print("decreasing key " + str(node[0]))
                 edges.decrease_key(node[0], node[1])
 
     return mst
