@@ -19,27 +19,30 @@ def prim1(WGraph):
     return MST
 
 def prim2(G):
+    if G.number_of_nodes() == 0:
+        return G
     inf = 1001
-    edges = MinHeap([Element(node, inf) for node in range(1,G.number_of_nodes())])
+    edges = MinHeap([Element(node, inf) for node in range(G.number_of_nodes())])
     mst = WeightedGraph(G.number_of_nodes())
     marked = [False for _ in range(G.number_of_nodes())]
 
-    for node in (G.adjacent_nodes(0)):
-        edges.decrease_key(node[0], node[1])
-    marked[0] = True
+    #for node in (G.adjacent_nodes(0)):
+    #    edges.decrease_key(node[0], node[1])
+    #marked[0] = True
 
     while not edges.is_empty():
         u = edges.extract_min()
+        marked[u.value] = True
+        flag = False
         for node in G.adjacent_nodes(u.value):
-            if u.key == node[1]:
-                mst.add_edge(node[0], u.value, u.key)
-                marked[u.value] = True
-
             if not marked[node[0]]:
                 edges.decrease_key(node[0], node[1])
+            
+            elif u.key == node[1] and not flag:
+                mst.add_edge(node[0], u.value, u.key)
+                flag = True
+                
 
-        #for node in (G.adjacent_nodes(u.value)):
-        #    if not marked[node[0]]:
-        #        edges.decrease_key(node[0], node[1])
+            
 
     return mst
