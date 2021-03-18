@@ -43,5 +43,4 @@ def prim2(G):
                 mst.add_edge(node[0], u.value, u.key)
                 flag = True
                 
-
     return mst
