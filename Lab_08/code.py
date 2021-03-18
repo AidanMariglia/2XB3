@@ -2,7 +2,7 @@ from mst import *
 from random import shuffle, randint
 import timeit
 
-def prim1Test():
+def primTest():
     test = WeightedGraph(7)
     test.add_edge(0, 1, 1)
     test.add_edge(0, 2, 10)
@@ -17,15 +17,8 @@ def prim1Test():
     test.add_edge(4, 6, 6)
     test.add_edge(5, 6, 24)
 
-    start = timeit.default_timer() 
     test2 = prim1(test)
-    end = timeit.default_timer()
-    total1 = end - start
-    start = timeit.default_timer() 
     test1 = prim2(test)
-    end = timeit.default_timer()
-    total2 = end - start
-    print(total1, total2)
 
     print(test2.number_of_nodes())
     print(test2.adjacent_nodes(0))
@@ -46,6 +39,19 @@ def prim1Test():
     print(test1.adjacent_nodes(4))
     print(test1.adjacent_nodes(5))
     print(test1.adjacent_nodes(6))
+
+def prim1Test():
+    graph = WeightedGraph(4)
+    graph.add_edge(0,1,1)
+    graph.add_edge(1,3,2)
+    graph.add_edge(3,2,5)
+    graph.add_edge(2,0,4)
+    graph.add_edge(0,3,3)
+
+    mst = prim1(graph)
+
+    for i in range(4):
+        print(mst.adjacent_nodes(i))
 
 def prim2Test():
     graph = WeightedGraph(4)
@@ -107,4 +113,4 @@ def generate_random_graph(nodes, edges):
 
     return randomGraph
 
-compare_test(100)
+primTest()
