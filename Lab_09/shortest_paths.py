@@ -1,18 +1,16 @@
 from lab9 import *
 
 def bellman_ford_approx(G, source, k):
-    pred = {} #Predecessor dictionary. Isn't returned, but here for your understanding
-    dist = {} #Distance dictionary
+    pred = {} 
+    dist = {} 
     nodes = list(G.adj.keys())
     count = {}
 
-    #Initialize distances
     for node in nodes:
         dist[node] = 99999
         count[node] = 0
     dist[source] = 0
 
-    #Meat of the algorithm
     for _ in range(G.number_of_nodes()):
         for node in nodes:
             if count[node] <= k:
@@ -28,12 +26,26 @@ def bellman_ford_approx(G, source, k):
                 pass
     return dist
 
-graph = create_random_complete_graph(100, 1000)
 
-current = dijkstra(graph, 0)
+def all_pairs_dijkstra(G):
+    matrix = [[999999 for _ in range(G.number_of_nodes())]\
+                 for _ in range(G.number_of_nodes())]
 
-old = bellman_ford_approx(graph, 0, 99)
+    for source in range(G.number_of_nodes()):
+        temp = dijkstra(G, source)
+        for node in range(G.number_of_nodes()):
+            matrix[source][node] = temp[node]
 
-new = bellman_ford(graph, 0)
+    return matrix
 
-print(total_dist(current), total_dist(new), total_dist(old))
+
+def all_pairs_bellman_ford(G):
+    matrix = [[999999 for _ in range(G.number_of_nodes())]\
+                 for _ in range(G.number_of_nodes())]
+
+    for source in range(G.number_of_nodes()):
+        temp = bellman_ford(G, source)
+        for node in range(G.number_of_nodes()):
+            matrix[node][source] = temp[node]
+
+    return matrix
