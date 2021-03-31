@@ -3,7 +3,7 @@ from lab10 import *
 def check_degree(G, vertex):
     return len(G.adjacent_nodes(vertex))
 
-def vc_approx2(G):
+def vc_approx1(G):
     degmap = {}
     cover = []
     for i in range(len(G.adj)):
@@ -18,19 +18,17 @@ def vc_approx2(G):
 
     return list(G.adj.keys())
     
-def vc_approx1(G):
+def vc_approx2(G):
     nodes = list(G.adj.keys())
     C = []
     i = 0
     while(i < G.number_of_nodes()):
         randNum = random.randint(0, nodes.__len__() - 1)
         randNode = nodes[randNum]
-        print(C)
         if randNode not in C:
             i += 1
             C.append(randNode)
         if is_vertex_cover(G, C):
-            print("hello")
             return C
     return C
 
