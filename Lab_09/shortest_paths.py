@@ -13,9 +13,9 @@ def bellman_ford_approx(G, source, k):
 
     for _ in range(G.number_of_nodes()):
         for node in nodes:
-            if count[node] <= k:
+            if count[node] < k:
                 for neighbour in G.adj[node]:
-                    if count[node] <= k:
+                    if count[node] < k:
                         if dist[neighbour] > dist[node] + G.w(node, neighbour):
                             dist[neighbour] = dist[node] + G.w(node, neighbour)
                             pred[neighbour] = node
