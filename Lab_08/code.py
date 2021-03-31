@@ -69,12 +69,12 @@ def prim2Test():
 
 def compare_test(nodes):
     for i in range(nodes, 950, 50):
-        print(str(i) + "," + str(timetest(prim1, prim2, 25, nodes, i)))
+        n = timetest(prim1, prim2, 25, nodes, i)
+        print(str(i) + ',' + str(n[0]) + ',' + str(n[1]))
 
 def timetest(f1, f2, runs, nodes, edges):
     total1 = 0
     total2 = 0
-    total3 = 0
     for _ in range(runs):
         rand_graph = generate_random_graph(nodes, edges)                                                 
         start = timeit.default_timer()                                          
